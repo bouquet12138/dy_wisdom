@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/app_theme_color">
+
+
+        <com.qmuiteam.qmui.widget.QMUIRadiusImageView
+            android:id="@+id/headImage"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/app_head"
+            app:qmui_border_color="#88ffffff"
+            app:qmui_border_width="3dp"
+            app:qmui_is_circle="true" />
+
+        <com.example.common_view.custom_view.WaveView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true" />
+
+        <com.example.common_view.custom_view.WaveView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_alignParentBottom="true"
+            app:waveColor="#fff"
+            app:waveNum="4" />
+
+    </RelativeLayout>
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="30dp"
+        android:layout_weight="1"
+        app:srlEnablePureScrollMode="true">
+
+
+        <include layout="@layout/login_layout_login" />
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:gravity="center">
+
+
+        <com.example.common_view.custom_view.SelectImg
+            android:id="@+id/radio"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:padding="5dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="登陆表示你同意该软件"
+            android:textColor="#555"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/userText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="用户条例"
+            android:textColor="@color/app_theme_light_color"
+            android:textSize="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="和"
+            android:textColor="#555"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/privacyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="隐私条例"
+            android:textColor="@color/app_theme_light_color"
+            android:textSize="12dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

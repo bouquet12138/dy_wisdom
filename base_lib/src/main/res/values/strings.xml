@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">base_lib</string>
+    <string name="error_gif">error</string>
+</resources>

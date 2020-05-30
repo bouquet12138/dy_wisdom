@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?><!--下面-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp">
+
+    <!--积分商城-->
+    <LinearLayout
+        android:id="@+id/integralShop"
+        style="@style/main_home_bt">
+
+        <ImageView
+            style="@style/main_drawable_style"
+            android:background="@drawable/main_back_e"
+            android:src="@drawable/main_integral_shop" />
+
+        <TextView
+            style="@style/main_text_style"
+            android:text="分润积分商城" />
+
+    </LinearLayout>
+
+    <!--会员注册-->
+    <LinearLayout
+        android:id="@+id/member_register"
+        style="@style/main_home_bt">
+
+        <ImageView
+            style="@style/main_drawable_style"
+            android:background="@drawable/main_back_a"
+            android:src="@drawable/main_member" />
+
+        <TextView
+            style="@style/main_text_style"
+            android:text="会员注册" />
+
+    </LinearLayout>
+
+
+    <!--客户中心-->
+    <LinearLayout
+        android:id="@+id/customer_center"
+        style="@style/main_home_bt">
+
+        <ImageView
+
+            style="@style/main_drawable_style"
+            android:background="@drawable/main_back_e"
+            android:src="@drawable/main_service" />
+
+        <TextView
+            style="@style/main_text_style"
+            android:text="客服中心" />
+
+    </LinearLayout>
+
+
+    <!--关于我们-->
+    <LinearLayout
+        android:id="@+id/about_us"
+        style="@style/main_home_bt">
+
+        <ImageView
+
+            style="@style/main_drawable_style"
+            android:background="@drawable/main_back_f"
+            android:padding="5dp"
+            android:src="@drawable/main_about_us" />
+
+        <TextView
+            style="@style/main_text_style"
+            android:text="关于我们" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

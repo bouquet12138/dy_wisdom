@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <color name="colorPrimary">#4597f9</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="app_theme_light_color">#62A2FF</color>
+    <color name="app_theme_color">#4594fa</color>
+    <color name="app_theme_dark_color">#3B59C5</color>
+
+
+    <color name="dialog_bg_color">#FFFFFF</color>
+    <color name="trans_color">#0000</color>
+    <color name="app_light_color">#fafafa</color>
+    <color name="app_title_color">#fafafa</color>
+    <color name="app_dark_color">#fafafa</color>
+    <color name="app_text_color">#555</color>
+    <color name="app_light_text_color">#888</color>
+    <color name="app_dark_text_color">#222</color>
+
+    <!--细线的颜色-->
+    <color name="app_line_color">#eee</color>
+    <!--app背景的颜色-->
+    <color name="app_back_color">#eee</color>
+    <color name="app_light_back_color">#fafafa</color>
+
+    <color name="dividerColor">#e4e4e4</color>
+
+    <color name="error_stroke_color">#F27474</color>
+
+    <color name="gray_btn_bg_color">#D0D0D0</color>
+    <color name="gray_btn_bg_pressed_color">#B6B6B6</color>
+
+    <color name="red_btn_bg_color">#DD6B55</color>
+    <color name="red_btn_bg_pressed_color">#CD5B55</color>
+
+    <color name="success_stroke_color">#A5DC86</color>
+    <color name="trans_success_stroke_color">#33A5DC86</color>
+
+    <color name="warning_stroke_color">#f5ad6e</color>
+
+    <color name="button_text_color">#FFFFFF</color>
+
+
+    <color name="good">#ff58d1ff</color>
+    <color name="well">#ffb7db68</color>
+    <color name="pass">#FFfdcb2e</color>
+    <color name="don_t_pass">#FFf5668b</color>
+
+</resources>
+

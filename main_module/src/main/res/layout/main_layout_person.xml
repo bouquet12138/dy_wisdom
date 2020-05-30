@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/app_back_color" />
+
+    <!--我的团队-->
+    <LinearLayout
+        android:id="@+id/myTeam"
+        style="@style/main_person_line_layout">
+
+        <ImageView
+            style="@style/main_person_image"
+            android:src="@drawable/main_my_team" />
+
+        <TextView
+            style="@style/main_person_line_text"
+            android:text="我的团队" />
+
+    </LinearLayout>
+
+    <!--一根线-->
+    <View style="@style/main_divider" />
+
+    <!--可领奖励-->
+    <LinearLayout
+        android:id="@+id/can_get"
+        style="@style/main_person_line_layout">
+
+        <ImageView
+            style="@style/main_person_image"
+            android:src="@drawable/main_can_get" />
+
+        <TextView
+            style="@style/main_person_line_text"
+            android:text="可领奖励" />
+
+
+    </LinearLayout>
+
+    <!--一根线-->
+    <View style="@style/main_divider" />
+
+    <!--提现记录-->
+    <LinearLayout
+        android:id="@+id/withdraw"
+        style="@style/main_person_line_layout">
+
+        <ImageView
+            style="@style/main_person_image"
+            android:padding="1dp"
+            android:src="@drawable/main_with_draw" />
+
+        <TextView
+            style="@style/main_person_line_text"
+            android:text="提现记录" />
+
+
+    </LinearLayout>
+
+
+    <!--一根线-->
+    <View style="@style/main_divider" />
+
+    <!--推广记录-->
+    <LinearLayout
+        android:id="@+id/promotionRecord"
+        style="@style/main_person_line_layout">
+
+        <ImageView
+            style="@style/main_person_image"
+            android:src="@drawable/main_promotion_record" />
+
+        <TextView
+            style="@style/main_person_line_text"
+            android:text="推广记录" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/app_back_color" />
+
+    <!--账号管理-->
+    <LinearLayout
+        android:id="@+id/accountManager"
+        style="@style/main_person_line_layout">
+
+        <ImageView
+            style="@style/main_person_image"
+            android:background="@drawable/main_setting" />
+
+        <TextView
+            style="@style/main_person_line_text"
+            android:text="账号管理与设置" />
+
+    </LinearLayout>
+
+</LinearLayout>
+
+
+
+
+

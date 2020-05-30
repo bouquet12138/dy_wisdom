@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <LinearLayout style="@style/personInfoBackGroundStyle">
+
+        <TextView
+            style="@style/personalInfoTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="手机号:&#12288;" />
+
+        <com.example.common_view.editText.MyEditText
+            android:id="@+id/myTelPhone"
+            android:layout_marginLeft="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:inputType="number"
+            app:maxLength="11"></com.example.common_view.editText.MyEditText>
+    </LinearLayout>
+
+
+    <LinearLayout style="@style/personInfoBackGroundStyle">
+
+        <com.example.common_view.editText.MyEditText
+            android:id="@+id/verCode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:inputType="number"
+            app:maxLength="10"></com.example.common_view.editText.MyEditText>
+
+        <!--确定按钮-->
+        <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
+            android:id="@+id/getVrCodeBt"
+            android:layout_width="120dp"
+            android:layout_height="35dp"
+            android:text="获取验证码"
+            android:textColor="#fff"
+            app:qmui_backgroundColor="@drawable/selector_bt_color"
+            app:qmui_borderWidth="0dp" />
+
+    </LinearLayout>
+
+    <!--登陆密码-->
+    <LinearLayout style="@style/personInfoBackGroundStyle">
+
+        <TextView
+            style="@style/personalInfoTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="支付密码:" />
+
+        <com.example.common_view.editText.MyEditText
+            android:id="@+id/payPassword"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:hint="6-20位"
+            android:layout_marginLeft="5dp"
+            app:inputType="number_password"
+            app:maxLength="6"></com.example.common_view.editText.MyEditText>
+
+        <com.example.common_view.custom_view.ShowPasswordView
+            android:id="@+id/passwordBt1"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+    </LinearLayout>
+
+    <!--确认登陆密码-->
+    <LinearLayout style="@style/personInfoBackGroundStyle">
+
+        <TextView
+            style="@style/personalInfoTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="确认密码:" />
+
+        <com.example.common_view.editText.MyEditText
+            android:id="@+id/confirmPayPassword"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:hint="6-20位"
+            android:layout_marginLeft="5dp"
+            app:inputType="number_password"
+            app:maxLength="6"></com.example.common_view.editText.MyEditText>
+
+        <com.example.common_view.custom_view.ShowPasswordView
+            android:id="@+id/passwordBt2"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+    </LinearLayout>
+
+</LinearLayout>

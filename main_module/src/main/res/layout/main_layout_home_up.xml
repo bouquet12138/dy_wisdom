@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?><!--上面-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp">
+    <!--购物商城-->
+    <LinearLayout
+        android:id="@+id/myShop"
+        style="@style/main_home_bt">
+
+        <ImageView
+            style="@style/main_drawable_style"
+            android:background="@drawable/main_back_b"
+            android:src="@drawable/main_shopping_shop" />
+
+        <TextView
+            style="@style/main_text_style"
+            android:text="在线商城" />
+
+    </LinearLayout>
+
+    <!--套餐店铺-->
+    <LinearLayout
+        android:id="@+id/companyBusiness"
+        style="@style/main_home_bt">
+
+        <ImageView
+            style="@style/main_drawable_style"
+            android:background="@drawable/main_back_d"
+            android:src="@drawable/main_business" />
+
+        <TextView
+            style="@style/main_text_style"
+            android:text="套餐店铺" />
+
+    </LinearLayout>
+
+
+    <!--城市服务-->
+    <LinearLayout
+        android:id="@+id/city"
+        style="@style/main_home_bt">
+
+        <ImageView
+            style="@style/main_drawable_style"
+            android:background="@drawable/main_back_c"
+            android:src="@drawable/main_city" />
+
+        <TextView
+            style="@style/main_text_style"
+            android:text="城市服务" />
+
+    </LinearLayout>
+
+
+    <!--App推广-->
+    <LinearLayout
+        android:id="@+id/popularize_app"
+        style="@style/main_home_bt">
+
+        <ImageView
+            style="@style/main_drawable_style"
+            android:background="@drawable/main_back_h"
+            android:src="@drawable/main_popularize_app" />
+
+        <TextView
+            style="@style/main_text_style"
+            android:text="APP推广" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

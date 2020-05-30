@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_back_color"
+    android:orientation="vertical"
+    android:paddingTop="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="vertical">
+
+        <!--修改密码-->
+        <LinearLayout
+            android:id="@+id/modifyPass"
+            style="@style/main_person_line_layout">
+
+            <ImageView
+                style="@style/main_person_image"
+                android:src="@drawable/main_modify" />
+
+            <TextView
+                style="@style/main_person_line_text"
+                android:text="修改登陆密码" />
+
+
+        </LinearLayout>
+
+
+        <!--一根线-->
+        <View style="@style/main_divider" />
+
+        <!--修改支付密码-->
+        <LinearLayout
+            android:id="@+id/modifyPayPass"
+            style="@style/main_person_line_layout">
+
+            <ImageView
+                style="@style/main_person_image"
+                android:src="@drawable/main_modify" />
+
+            <TextView
+                style="@style/main_person_line_text"
+                android:text="修改支付密码" />
+
+
+        </LinearLayout>
+
+        <!--一根线-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:background="@color/app_line_color" />
+
+        <!--缓存清理-->
+        <LinearLayout
+            android:id="@+id/cleanCache"
+            style="@style/main_person_line_layout">
+
+            <ImageView
+                style="@style/main_person_image"
+                android:src="@drawable/main_broom" />
+
+            <TextView
+                style="@style/main_person_line_text"
+                android:text="缓存清理" />
+
+            <!--内存垃圾-->
+            <TextView
+                android:id="@+id/cacheText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:textColor="#aaa"
+                android:textSize="12dp" />
+
+
+        </LinearLayout>
+
+        <!--一根线-->
+        <View style="@style/main_divider" />
+
+        <LinearLayout
+            android:id="@+id/appUpdate"
+            style="@style/main_person_line_layout">
+
+            <ImageView
+                style="@style/main_person_image"
+                android:src="@drawable/main_update" />
+
+            <TextView
+                style="@style/main_person_line_text"
+                android:text="检测更新" />
+
+            <TextView
+                android:id="@+id/appVersionText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:textColor="#aaa"
+                android:textSize="12dp" />
+
+
+        </LinearLayout>
+
+        <!--一根线-->
+        <View style="@style/main_divider" />
+
+        <!--意见建议-->
+        <LinearLayout
+            android:id="@+id/option"
+            style="@style/main_person_line_layout">
+
+            <ImageView
+                style="@style/main_person_image"
+                android:src="@drawable/main_opinion" />
+
+            <TextView
+                style="@style/main_person_line_text"
+                android:text="意见建议" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/exitCurrentAccount"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/selector_rectangle"
+        android:gravity="center"
+        android:text="退出当前账号"
+        android:textColor="@color/app_theme_color"
+        android:textSize="18dp" />
+</LinearLayout>
+
+

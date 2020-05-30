@@ -1,0 +1,85 @@
+<resources>
+
+    <style name="AppMyTextViewStyle">
+        <item name="android:textColor">@color/app_text_color</item>
+        <item name="android:textSize">16dp</item>
+    </style>
+
+    <!--背景透明-->
+    <style name="DialogBackgroundNull" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item> <!--无边框-->
+        <item name="android:windowIsFloating">true</item><!--悬浮在父界面之上-->
+        <item name="android:windowIsTranslucent">true</item><!--允许呈现半透明状态-->
+        <item name="android:windowNoTitle">true</item><!--无标题-->
+        <item name="android:windowBackground">@color/trans_color</item> <!--透明背景-->
+        <item name="android:backgroundDimEnabled">true</item> <!-- 允许周围模糊 -->
+        <item name="android:backgroundDimAmount">0.6</item><!--设置模糊灰度-->
+    </style>
+
+    <!--标题文本样式-->
+    <style name="toolBarText">
+        <item name="android:textSize">13dp</item>
+        <item name="android:background">@color/app_title_color</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textColor">@color/app_dark_text_color</item>
+
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+
+    <!--返回按钮样式-->
+    <style name="back_bt">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:src">@drawable/selector_back</item>
+        <item name="android:textColorHighlight">#8fff</item>
+    </style>
+
+    <!--右边文字的样式-->
+    <style name="RightTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginRight">3dp</item>
+        <item name="android:padding">9dp</item>
+        <item name="android:textColor">@drawable/selector_text</item>
+        <item name="android:textSize">13dp</item>
+    </style>
+
+    <!--悬浮按钮的样式-->
+    <style name="float_bt">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:layout_marginBottom">40dp</item>
+
+    </style>
+
+    <style name="Widget_GifView"></style>
+
+
+    <style name="personalInfoTextStyle">
+        <item name="android:textColor">#555</item>
+    </style>
+
+    <!--个人信息背景-->
+    <style name="personInfoBackGroundStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">50dp</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:background">@drawable/selector_person_info_back</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+
+</resources>

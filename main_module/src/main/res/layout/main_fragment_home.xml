@@ -1,0 +1,128 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_light_back_color"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/toolBarText"
+        android:gravity="center"
+        android:text="主页" />
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/title"
+        app:srlAccentColor="@android:color/white"
+        app:srlEnablePureScrollMode="true">
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.youth.banner.Banner
+                    android:id="@+id/banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_margin="15dp"
+                    app:indicator_gravity="right"
+                    app:indicator_selected_color="@color/app_title_color">
+
+                </com.youth.banner.Banner>
+
+                <include layout="@layout/main_layout_home_up" />
+
+                <include layout="@layout/main_layout_home_down" />
+
+
+                <!--公司快讯-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp">
+
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="20dp"
+                        android:background="@color/app_theme_color" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="公司快讯"
+                        android:textColor="@color/app_dark_text_color"
+                        android:textSize="18dp" />
+
+                </LinearLayout>
+
+                <!--公司快讯-->
+                <!--    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerView1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp" />-->
+
+                <FrameLayout
+                    android:id="@+id/frameLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+                <!--公司简介-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp">
+
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="20dp"
+                        android:background="@color/app_theme_color" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="公司简介"
+                        android:textColor="@color/app_dark_text_color"
+                        android:textSize="18dp" />
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:visibility="gone" />
+
+                <!--公司简介文字-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:lineSpacingMultiplier="1.3"
+                    android:padding="10dp"
+                    android:text="&#8194;&#8194;&#8194;&#8194;本公司专注于网站搭建，小程序制作，软件开发以及企业宣传片、商业广告、产品广告、电视节目、人物vcr、活动花絮等拍摄与制作，我们始终相信，用心打造的才是精品，用最短的时间，提供最优质、最便捷的服务，我们愿以细水长流之姿，传播德蕴悠扬之美！
+让每一种源于生活的创意用于生活。" />
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+</RelativeLayout>
+

@@ -1,0 +1,73 @@
+<resources>
+
+
+    <style name="main_drawable_style">
+        <item name="android:background">@drawable/main_selector_circle_a</item>
+        <item name="android:layout_width">45dp</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+
+    <style name="main_text_style">
+        <item name="android:textSize">13dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+
+    </style>
+
+    <style name="main_home_bt">
+        <item name="android:background">@drawable/main_selector_shape</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="main_person_image">
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+    </style>
+
+    <style name="main_person_line_layout">
+        <item name="android:padding">15dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/selector_rectangle</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <!--文字样式-->
+    <style name="main_person_line_text">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">30dp</item>
+    </style>
+
+    <!--分割线的样式-->
+    <style name="main_divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:layout_marginRight">30dp</item>
+        <item name="android:background">@color/app_line_color</item>
+    </style>
+
+    <style name="main_person_text">
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">0</item>
+        <item name="android:lineSpacingMultiplier">1.3</item>
+        <item name="android:textColor">@color/app_dark_text_color</item>
+        <item name="android:textSize">20dp</item>
+    </style>
+
+
+</resources>

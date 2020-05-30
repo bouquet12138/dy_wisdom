@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <!--标题栏-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/toolBarText"
+            android:text="图片裁剪" />
+
+        <ImageView
+            android:id="@+id/backButton"
+            style="@style/back_bt"
+            android:layout_centerVertical="true" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+
+        <com.example.common_view.custom_view.ZoomImageView
+            android:id="@+id/zoomImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+        <com.example.common_view.custom_view.ClipView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/clipView"
+            app:shape="circle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </com.example.common_view.custom_view.ClipView>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right">
+
+        <TextView
+            android:id="@+id/confirmText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:padding="10dp"
+            android:textSize="18dp"
+            android:text="确定"
+            android:textColor="#333" />
+    </LinearLayout>
+
+</LinearLayout>

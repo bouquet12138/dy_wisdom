@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:gravity="center_horizontal"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_centerHorizontal="true"
+        android:textSize="24dp"
+        android:layout_marginTop="60dp"
+        android:layout_width="wrap_content"
+        android:textColor="@color/app_dark_text_color"
+        android:text="添加下方二维码联系专属客服"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/main_service_center"
+        android:layout_height="250dp"/>
+
+    <TextView
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="60dp"
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:lineSpacingMultiplier="1.4"
+        android:text="欢迎使用德蕴创业投资产品\n如需帮助,请联系客服"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>

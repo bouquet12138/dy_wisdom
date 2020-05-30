@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/changeHeadTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="25dp"
+            android:background="@drawable/selector_person_info_back"
+            android:gravity="center_vertical"
+            android:paddingLeft="50dp"
+            android:text="更换头像" />
+
+
+        <com.qmuiteam.qmui.widget.QMUIRadiusImageView
+            android:id="@+id/headView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/gary_head"
+            app:qmui_border_color="@color/app_theme_light_color"
+            app:qmui_border_width="2dp"
+            app:qmui_is_circle="true" />
+
+
+    </RelativeLayout>
+
+
+    <LinearLayout style="@style/personInfoBackGroundStyle">
+
+        <TextView
+            style="@style/personalInfoTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="姓名:&#12288;" />
+
+
+        <com.example.common_view.editText.MyEditText
+            android:id="@+id/nameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:maxLength="20"></com.example.common_view.editText.MyEditText>
+
+    </LinearLayout>
+
+
+    <LinearLayout style="@style/personInfoBackGroundStyle">
+
+        <TextView
+            style="@style/personalInfoTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="性别:" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/men"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:checked="true"
+                android:text="男" />
+
+            <RadioButton
+                android:id="@+id/women"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:text="女" />
+
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/birthdayLayout"
+        style="@style/personInfoBackGroundStyle">
+
+        <TextView
+            style="@style/personalInfoTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="生日:" />
+
+        <TextView
+            android:id="@+id/birthdayText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:maxLines="1"
+            android:textSize="16dp" />
+    </LinearLayout>
+
+    <!--地区-->
+    <LinearLayout
+        android:id="@+id/cityLayout"
+        style="@style/personInfoBackGroundStyle">
+
+        <TextView
+            style="@style/personalInfoTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="地区:" />
+
+        <TextView
+            android:id="@+id/cityText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:maxLines="1"
+            android:textSize="16dp" />
+    </LinearLayout>
+
+    <!--详细地址-->
+    <LinearLayout style="@style/personInfoBackGroundStyle">
+
+        <TextView
+            style="@style/personalInfoTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="详细地址:" />
+
+
+        <com.example.common_view.editText.MyEditText
+            android:id="@+id/detailAddressText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></com.example.common_view.editText.MyEditText>
+
+    </LinearLayout>
+
+
+    <!--身份证号-->
+    <LinearLayout style="@style/personInfoBackGroundStyle">
+
+        <TextView
+            style="@style/personalInfoTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="身份证:" />
+
+
+        <com.example.common_view.editText.MyEditText
+            android:id="@+id/idCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:maxLength="20"></com.example.common_view.editText.MyEditText>
+
+    </LinearLayout>
+
+    <!--银行卡号-->
+    <LinearLayout style="@style/personInfoBackGroundStyle">
+
+        <TextView
+            style="@style/personalInfoTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="银行卡:" />
+
+
+        <com.example.common_view.editText.MyEditText
+            android:id="@+id/bandCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:maxLength="20"></com.example.common_view.editText.MyEditText>
+
+    </LinearLayout>
+
+
+</LinearLayout>

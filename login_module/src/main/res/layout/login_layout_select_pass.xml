@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_back_color"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="vertical">
+
+        <!--修改密码-->
+        <LinearLayout
+            android:id="@+id/modifyPass"
+            style="@style/login_person_line_layout">
+
+            <ImageView
+                style="@style/login_person_image"
+                android:src="@drawable/login_modify" />
+
+            <TextView
+                style="@style/login_person_line_text"
+                android:text="修改登陆密码" />
+
+
+        </LinearLayout>
+
+
+        <!--一根线-->
+        <View style="@style/login_divider" />
+
+        <!--修改支付密码-->
+        <LinearLayout
+            android:id="@+id/modifyPayPass"
+            style="@style/login_person_line_layout">
+
+            <ImageView
+                style="@style/login_person_image"
+                android:src="@drawable/login_modify" />
+
+            <TextView
+                style="@style/login_person_line_text"
+                android:text="修改支付密码" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
+
+

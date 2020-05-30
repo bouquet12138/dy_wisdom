@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_back_color">
+
+    <!--标题栏-->
+    <RelativeLayout
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/app_title_color">
+
+        <TextView
+            android:id="@+id/titleText"
+            style="@style/toolBarText"
+            android:layout_marginLeft="40dp"
+            android:text="标题" />
+
+        <ImageView
+            android:id="@+id/backButton"
+            style="@style/back_bt"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:id="@+id/rightText"
+            style="@style/RightTextStyle"
+            android:enabled="false"
+            android:text="提交"
+            android:textColor="@color/app_dark_text_color" />
+
+    </RelativeLayout>
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolBar"
+        app:srlAccentColor="@android:color/white"
+        app:srlEnablePureScrollMode="true">
+
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/toolBar">
+
+        </FrameLayout>
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    <!--提交按钮-->
+    <!--    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatBt"
+            style="@style/float_bt"
+            android:backgroundTint="@color/app_title_color" />-->
+
+</RelativeLayout>
