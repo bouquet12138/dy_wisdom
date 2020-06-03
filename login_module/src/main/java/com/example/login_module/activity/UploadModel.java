@@ -33,7 +33,7 @@ public class UploadModel {
      */
     //TODO:这里以后用到再说
     public String uploadImage(String imagePath, int user_id, String uuid, int occu, String image_type) {
-        String address = ServerInfo.getServerAddress("upload_image");
+        String address = ServerInfo.getServerAddress("upload_img");
 
         Log.d(TAG, "uploadImage: " + address);
         Map<String, String> map = new LinkedHashMap<>();

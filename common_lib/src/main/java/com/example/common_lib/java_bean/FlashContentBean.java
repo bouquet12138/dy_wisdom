@@ -1,5 +1,6 @@
 package com.example.common_lib.java_bean;
 
+
 import java.io.Serializable;
 
 public class FlashContentBean implements Serializable {
@@ -8,22 +9,8 @@ public class FlashContentBean implements Serializable {
     private int flash_id;
     private String content;
     private int image_id;
-    private ImageBean image;//图片列表
 
-    @Override
-    public String toString() {
-        return "FlashContentBean{" +
-                "flash_content_id=" + flash_content_id +
-                ", flash_id=" + flash_id +
-                ", content='" + content + '\'' +
-                ", image_id=" + image_id +
-                '}';
-    }
-
-    public FlashContentBean(String content, int image_id) {
-        this.content = content;
-        this.image_id = image_id;
-    }
+    private ImageBean image;
 
     public int getFlash_content_id() {
         return flash_content_id;
@@ -48,7 +35,6 @@ public class FlashContentBean implements Serializable {
     public void setContent(String content) {
         this.content = content;
     }
-
 
     public int getImage_id() {
         return image_id;

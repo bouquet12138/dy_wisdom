@@ -111,6 +111,14 @@ public class MainActivity extends MVPBaseActivity {
         mBottomNavigation.setOnItemClickListener((p) ->
         {
             if (p == mViewPager.getCurrentItem()) {
+                if (p == 0) {
+                    HomeFragment homeFragment = (HomeFragment) mFragments.get(0);//得到右边的
+                    homeFragment.refresh();//刷新一下数据
+                } else if (p == 1) {
+                    PersonFragment personFragment = (PersonFragment) mFragments.get(1);//得到右边的
+                    personFragment.refresh();//刷新一下数据
+                }
+
             } else {
                 mViewPager.setCurrentItem(p);
             }

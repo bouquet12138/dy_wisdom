@@ -26,7 +26,6 @@
         <TextView
             android:id="@+id/rightText"
             style="@style/RightTextStyle"
-            android:enabled="false"
             android:text="提交"
             android:textColor="@color/app_dark_text_color" />
 

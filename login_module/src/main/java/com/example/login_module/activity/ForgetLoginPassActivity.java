@@ -3,6 +3,7 @@ package com.example.login_module.activity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 
 import com.example.common_lib.base.AppMvpBaseActivity;
 import com.example.common_lib.info.NowUserInfo;
@@ -11,18 +12,20 @@ import com.example.common_view.editText.MyEditText;
 import com.example.login_module.R;
 import com.example.login_module.contract.ForgetPassContract;
 import com.example.login_module.presenter.ForgetPassPresenter;
-import com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton;
 
 public class ForgetLoginPassActivity extends AppMvpBaseActivity implements View.OnClickListener, ForgetPassContract.IView {
 
 
-    private MyEditText mMyTelPhone;
-    private MyEditText mVerCode;
-    private QMUIRoundButton mGetVrCodeBt;
-    private MyEditText mLoginPassword;
-    private ShowPasswordView mPasswordBt1;
-    private MyEditText mConfirmLoginPassword;
-    private ShowPasswordView mPasswordBt2;
+    private MyEditText mMyTelPhone;//手机号
+
+    private MyEditText mVerCode;//验证码
+    private Button mGetVrCodeBt;//获取验证码
+
+    private MyEditText mLoginPassword;//登陆密码
+    private ShowPasswordView mPasswordBt1;//展示登陆密码的图片
+
+    private MyEditText mConfirmLoginPassword;//确认登陆密码
+    private ShowPasswordView mPasswordBt2;//展示确认密码的图片
 
     private ForgetPassPresenter mPresenter = new ForgetPassPresenter();
 

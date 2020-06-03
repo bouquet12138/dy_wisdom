@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,10 +22,15 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.SizeUtils;
 import com.example.base_lib.base.BaseFragment;
 import com.example.common_lib.contract.ARouterContract;
+import com.example.common_lib.info.NowUserInfo;
+import com.example.common_lib.java_bean.UserBean;
+import com.example.common_lib.util.HeadImageUtil;
 import com.example.common_lib.util.NumberFormatUtil;
 import com.example.wisdomconsumption.R;
 import com.example.wisdomconsumption.activity.AccountManagerActivity;
 import com.example.wisdomconsumption.activity.ScanActivity;
+import com.example.wisdomconsumption.contract.PersonContract;
+import com.example.wisdomconsumption.presenter.PersonPresenter;
 import com.qmuiteam.qmui.layout.QMUILinearLayout;
 
 import java.util.List;
@@ -35,7 +41,7 @@ import pub.devrel.easypermissions.EasyPermissions;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PersonFragment extends BaseFragment implements View.OnClickListener, EasyPermissions.PermissionCallbacks {
+public class PersonFragment extends BaseFragment implements View.OnClickListener, EasyPermissions.PermissionCallbacks, PersonContract.IView {
 
     private final int SCAN = 0;//扫码
 
@@ -46,6 +52,7 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
     private TextView mEditText;
     private Button mSaleWithdraw;
     private Button mMerchantWithdraw;
+
     private TextView mSale_share_integral;
     private TextView mRedeem_integral;
     private TextView mBonus_integral;
@@ -61,31 +68,39 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
     private ImageView mQrImg;
     private ImageView mSetImg;
 
+    private ScrollView mScrollView;
 
-    public PersonFragment() {
-        // Required empty public constructor
-    }
+    private PersonPresenter mPresenter = new PersonPresenter();
 
 
     @Override
     protected int getContentViewId() {
-       /* if (NowUserInfo.getNowUserInfo() == null)//TODO:这里等着解开
+        if (NowUserInfo.getNowUserInfo() == null)//TODO:这里等着解开
             return R.layout.main_fragment_no_user;
-        else*/
-        return R.layout.main_fragment_person;
+        else
+            return R.layout.main_fragment_person;
     }
 
     @Override
     protected void initAllMembersView(Bundle savedInstanceState) {
-       /* if (NowUserInfo.getNowUserInfo() == null) {
+        if (NowUserInfo.getNowUserInfo() == null) {
             TextView login = mView.findViewById(R.id.login);
             login.setOnClickListener(v -> startLogin());//跳转登陆
-        } else */
-        {
+        } else {
+            mPresenter.attachView(this);//绑定一下
             initView();
             initData();//初始化数据
             initListener();
         }
+    }
+
+    /**
+     * 到上层来
+     */
+    @Override
+    public void onResume() {
+        mPresenter.getUserInfo();//获取用户信息
+        super.onResume();
     }
 
     /**
@@ -96,6 +111,8 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
         cardLayout.setRadiusAndShadow(SizeUtils.dp2px(10), SizeUtils.dp2px(5), 0.5f);
         cardLayout = mView.findViewById(R.id.cardLayout2);//第二个cardLayout
         cardLayout.setRadiusAndShadow(SizeUtils.dp2px(10), SizeUtils.dp2px(5), 0.5f);
+
+        mScrollView = mView.findViewById(R.id.scrollView);//滚动view
 
         mHead = mView.findViewById(R.id.head);
         mNameText = mView.findViewById(R.id.nameText);
@@ -126,10 +143,21 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
      * 初始化数据
      */
     private void initData() {
-        setTitle(0, "销售积分", mSale_share_integral);//销售分润
-        setTitle(0, "兑换积分", mRedeem_integral);//兑换积分
-        setTitle(0, "分润积分", mBonus_integral);//分润积分
-        setTitle(0, "推广积分", mSpread_integral);//推广积分
+
+        UserBean userBean = NowUserInfo.getNowUserInfo();//用户信息
+        if (userBean == null)
+            return;
+
+        HeadImageUtil.setUserHead(userBean, getContext(), mHead);//设置头像信息
+
+        mNameText.setText(userBean.getName());//设置用户姓名
+        mRoleText.setText("级别:" + userBean.getRole());//级别
+        mPhoneText.setText("手机:" + userBean.getPhone());//手机号
+
+        setTitle(userBean.getSale_share_integral(), "销售积分", mSale_share_integral);//销售分润
+        setTitle(userBean.getRedeem_integral(), "兑换积分", mRedeem_integral);//兑换积分
+        setTitle(userBean.getBonus_integral(), "分润积分", mBonus_integral);//分润积分
+        setTitle(userBean.getSpread_integral(), "推广积分", mSpread_integral);//推广积分
     }
 
     /**
@@ -146,8 +174,13 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
 
         SpannableString spannableString = new SpannableString(str);
 
+        //f34624
+
         spannableString.setSpan(new AbsoluteSizeSpan(SizeUtils.dp2px(13)),
                 numStr.length(), str.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        spannableString.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.app_theme_color)),
+                0, numStr.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+
         spannableString.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.app_text_color)),
                 numStr.length(), str.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
 
@@ -161,6 +194,11 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
     private void initListener() {
 
         mEditText.setOnClickListener(this);
+
+        mSale_share_integral.setOnClickListener(this);
+        mRedeem_integral.setOnClickListener(this);
+        mBonus_integral.setOnClickListener(this);
+        mSpread_integral.setOnClickListener(this);
 
         mMyTeam.setOnClickListener(this);
         mCan_get.setOnClickListener(this);
@@ -179,7 +217,19 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
                 ARouter.getInstance().build(ARouterContract.LOGIN_INFO) //跳转到用户信息页面
                         .navigation();
                 break;
+            case R.id.sale_share_integral:
+                ARouter.getInstance().build(ARouterContract.SALE_SHARE_SALE_SHARE) //跳转到销售积分页面
+                        .navigation();
+                break;
+            case R.id.redeem_integral:
+                break;
+            case R.id.bonus_integral:
+                break;
+            case R.id.spread_integral:
+                break;
             case R.id.myTeam:
+                ARouter.getInstance().build(ARouterContract.MY_TEAM_MY_TEAM).withString("user_name", NowUserInfo.getNowUserInfo().getName()) //跳转到用户信息页面
+                        .withInt("user_id", NowUserInfo.getNowUserId()).navigation();
                 break;
             case R.id.can_get:
                 break;
@@ -227,6 +277,35 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
     @Override
     public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
         showToast("用户拒接权限，无法扫码");
+    }
+
+    /**
+     * 销毁
+     */
+    @Override
+    public void onDestroy() {
+        mPresenter.detachView();//解除绑定
+        super.onDestroy();
+    }
+
+    @Override
+    public void setUserInfo() {
+        initData();//重新初始化一下
+    }
+
+    private long mLastRefreshTime = 0;//上一次刷新
+
+    /**
+     * 刷新一下信息
+     */
+    public void refresh() {
+        long nowRefreshTime = System.currentTimeMillis();//当前时间
+        if (nowRefreshTime - mLastRefreshTime > 2000) {
+            mPresenter.getUserInfo();
+            mLastRefreshTime = nowRefreshTime;
+        }
+        if (mScrollView != null) //滚动view 不是空
+            mScrollView.fullScroll(ScrollView.FOCUS_UP);//滚动到顶部
     }
 
 }

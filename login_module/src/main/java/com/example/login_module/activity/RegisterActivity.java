@@ -4,13 +4,16 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.common_lib.base.AppMvpBaseActivity;
 import com.example.common_lib.contract.ARouterContract;
 import com.example.common_lib.info.NowUserInfo;
+import com.example.common_lib.java_bean.SetBean;
 import com.example.common_lib.java_bean.UserBean;
 import com.example.common_view.custom_view.ShowPasswordView;
 import com.example.common_view.editText.MyEditText;
@@ -22,24 +25,32 @@ import com.example.login_module.presenter.RegisterPresenter;
 @Route(path = ARouterContract.LOGIN_REGISTER)
 public class RegisterActivity extends AppMvpBaseActivity implements View.OnClickListener, RegisterContract.IView {
 
-    private MyEditText mNameText;//姓名
-    private MyEditText mTelPhone;
-    private MyEditText mVertexUser;
-    private TextView mVertexUserName;
 
+    private MyEditText mNameText;
+    private MyEditText mTelPhone;
+    private MyEditText mPlaceUserPhone;
+    private TextView mPlaceUserName;
     private MyEditText mVerCode;
     private Button mGetVrCodeBt;
-
     private MyEditText mLoginPassword;
     private ShowPasswordView mPasswordBt1;
-    private MyEditText mConfirmLoginPassword;
 
-    private ShowPasswordView mPasswordBt2;
     private MyEditText mPayPassword;
+    private ShowPasswordView mPasswordBt2;
 
+    private ImageView mImageView;
+
+    private ViewGroup mWeChatPay;
+    private ViewGroup mAliPay;
+    private ViewGroup mIntegralPay;
+
+    private MyEditText mMyPayPassword;
     private ShowPasswordView mPasswordBt3;
-    private MyEditText mConfirmPayPassword;
-    private ShowPasswordView mPasswordBt4;
+
+    private TextView mMoneyText;
+    private TextView mMoneyDetailText;
+
+    private Button mConfirmBt;
 
     private RegisterPresenter mPresenter = new RegisterPresenter();
 
@@ -47,11 +58,12 @@ public class RegisterActivity extends AppMvpBaseActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         showNormalView();//展示正常view
-        setSubmitEnable(false);//提交按钮不可用
+        setSubmitEnable(true);//提交可用
         initView();
         initData();
         initListener();
         mPresenter.attachView(this);//绑定一下
+        mPresenter.getSetInfo();//得到套餐信息
     }
 
     /**
@@ -59,23 +71,27 @@ public class RegisterActivity extends AppMvpBaseActivity implements View.OnClick
      */
     private void initView() {
 
-        mNameText = findViewById(R.id.nameText);//姓名
-
+        mNameText = findViewById(R.id.nameText);
         mTelPhone = findViewById(R.id.telPhone);
-        mVertexUser = findViewById(R.id.vertex_user_phone);
-        mVertexUserName = findViewById(R.id.vertex_user_name);
-
+        mPlaceUserPhone = findViewById(R.id.place_user_phone);
+        mPlaceUserName = findViewById(R.id.place_user_name);
         mVerCode = findViewById(R.id.verCode);
         mGetVrCodeBt = findViewById(R.id.getVrCodeBt);
-
         mLoginPassword = findViewById(R.id.loginPassword);
         mPasswordBt1 = findViewById(R.id.passwordBt1);
-        mConfirmLoginPassword = findViewById(R.id.confirmLoginPassword);
-        mPasswordBt2 = findViewById(R.id.passwordBt2);
         mPayPassword = findViewById(R.id.payPassword);
+        mPasswordBt2 = findViewById(R.id.passwordBt2);
+        mImageView = findViewById(R.id.imageView);
+        mWeChatPay = findViewById(R.id.we_chat_pay);
+        mAliPay = findViewById(R.id.ali_pay);
+        mIntegralPay = findViewById(R.id.integral_pay);
+        mMyPayPassword = findViewById(R.id.myPayPassword);
         mPasswordBt3 = findViewById(R.id.passwordBt3);
-        mConfirmPayPassword = findViewById(R.id.confirmPayPassword);
-        mPasswordBt4 = findViewById(R.id.passwordBt4);
+
+        mConfirmBt = findViewById(R.id.confirmBt);
+
+        mMoneyText = findViewById(R.id.moneyText);
+        mMoneyDetailText = findViewById(R.id.moneyDetailText);
     }
 
     /**
@@ -86,39 +102,44 @@ public class RegisterActivity extends AppMvpBaseActivity implements View.OnClick
         if (userBean == null)//为空就返回
             return;
 
-        mVertexUser.setText(userBean.getPhone());
-        mVertexUserName.setText("安置者姓名：" + userBean.getName());
+        mPlaceUserPhone.setText(userBean.getPhone());
+        mPlaceUserName.setText("安置者姓名：" + userBean.getName());
 
     }
 
-
+    /**
+     * 初始化监听
+     */
     private void initListener() {
         mGetVrCodeBt.setOnClickListener(this);
+        mConfirmBt.setOnClickListener(this);//确认按钮
+
         MyEditText.OnTextChangedListener textChangedListener = () -> {
             onTextChange();
         };
         mTelPhone.setOnTextChangedListener(textChangedListener);
-        mVertexUser.setOnTextChangedListener(() -> {
+        mPlaceUserPhone.setOnTextChangedListener(() -> {
             onTextChange();
-            String vertexUserPhone = mVertexUser.getText();
-            if (!TextUtils.isEmpty(vertexUserPhone) && vertexUserPhone.length() == 11)
-                mPresenter.getUserInfo(vertexUserPhone);//得到安置者信息
+            String placeUserPhone = mPlaceUserPhone.getText();
+            if (!TextUtils.isEmpty(placeUserPhone) && placeUserPhone.length() == 11)
+                mPresenter.getUserInfo();//得到安置者信息
             else {
-                mVertexUserName.setText("安置者姓名：未知");
+                mPlaceUserName.setText("安置者姓名：未知");
             }
         });
 
-        mVerCode.setOnTextChangedListener(textChangedListener);
+        mNameText.setOnTextChangedListener(textChangedListener);
+        mTelPhone.setOnTextChangedListener(textChangedListener);
 
+        mVerCode.setOnTextChangedListener(textChangedListener);
         mLoginPassword.setOnTextChangedListener(textChangedListener);
-        mConfirmLoginPassword.setOnTextChangedListener(textChangedListener);
         mPayPassword.setOnTextChangedListener(textChangedListener);
-        mConfirmPayPassword.setOnTextChangedListener(textChangedListener);
+        mMyPayPassword.setOnTextChangedListener(textChangedListener);
 
         mPasswordBt1.setEditText(mLoginPassword.getEditText());
-        mPasswordBt2.setEditText(mConfirmLoginPassword.getEditText());
-        mPasswordBt3.setEditText(mPayPassword.getEditText());
-        mPasswordBt4.setEditText(mConfirmPayPassword.getEditText());
+        mPasswordBt2.setEditText(mPayPassword.getEditText());
+        mPasswordBt3.setEditText(mMyPayPassword.getEditText());
+
 
     }
 
@@ -126,6 +147,8 @@ public class RegisterActivity extends AppMvpBaseActivity implements View.OnClick
     public void onClick(View v) {
         if (v.getId() == R.id.getVrCodeBt) {
             mPresenter.sendQrCode();//发送验证码
+        } else if (v.getId() == R.id.confirmBt) {
+            mPresenter.register();//注册一下
         }
     }
 
@@ -160,18 +183,21 @@ public class RegisterActivity extends AppMvpBaseActivity implements View.OnClick
 
     @Override
     protected void onFloatBtClick() {
-        if (isRight()) {
-            Log.d(TAG, "onFloatBtClick: ");
-            String phoneNum = mTelPhone.getText();
-            String vertexPhoneNum = mVertexUser.getText();
-
-            String loginPass = mLoginPassword.getText();
-            String payPass = mPayPassword.getText();//支付密码
-
-            mPresenter.register(phoneNum, loginPass, payPass, NowUserInfo.getNowUserPhone(), vertexPhoneNum);
-        }
+        Log.d(TAG, "onFloatBtClick: ");
+        mPresenter.register();
     }
 
+    /**
+     * 设置套餐信息
+     *
+     * @param setBean
+     */
+    @Override
+    public void setSetInfo(SetBean setBean) {
+        mMoneyText.setText("￥" + setBean.getSet_price());
+        mMoneyDetailText.setText("销售积分" + (int) (setBean.getSet_price() * setBean.getSale_radio()) + "  推广积分" +
+                (int) (setBean.getSet_price() * setBean.getRedeem_ratio()));//详情
+    }
 
     @Override
     public void setSendBtEnable(boolean enable) {
@@ -188,58 +214,11 @@ public class RegisterActivity extends AppMvpBaseActivity implements View.OnClick
         mGetVrCodeBt.setText(text);
     }
 
-    @Override
-    public boolean isRight() {
-
-        String phoneNum = mTelPhone.getText();
-        String vertexPhoneNum = mVertexUser.getText();
-
-        String loginPass = mLoginPassword.getText();
-        String confirmLoginPass = mConfirmLoginPassword.getText();
-
-        String payPass = mPayPassword.getText();//支付密码
-        String confirmPayPass = mConfirmPayPassword.getText();
-
-        if (TextUtils.isEmpty(phoneNum) || phoneNum.length() < 11) {
-            showErrorHint("请输入正确的手机号");
-            return false;
-        }
-        if (TextUtils.isEmpty(vertexPhoneNum) || vertexPhoneNum.length() < 11) {
-            showErrorHint("请输入正确安置者手机号");
-            return false;
-        }
-        if (TextUtils.isEmpty(loginPass) || TextUtils.isEmpty(confirmLoginPass)
-                || TextUtils.isEmpty(payPass) || TextUtils.isEmpty(confirmPayPass)) {
-            showErrorHint("请输入密码");
-            return false;
-        }
-        if (!loginPass.equals(confirmLoginPass)) {
-            showErrorHint("登陆密码前后不一致");
-            return false;
-        }
-        if (!payPass.equals(confirmPayPass)) {
-            showErrorHint("支付密码前后不一致");
-            return false;
-        }
-
-        if (loginPass.length() < 6) {
-            showErrorHint("登陆密码至少6位");
-            return false;
-        }
-
-        if (payPass.length() != 6) {
-            showErrorHint("支付密码必须6位");
-            return false;
-        }
-
-        return true;
-    }
-
 
     @Override
     public void setUserInfo(UserBean userInfo) {
         if (userInfo != null)
-            mVertexUserName.setText("安置者姓名:" + userInfo.getName());//
+            mPlaceUserName.setText("安置者姓名:" + userInfo.getName());//设置安置者姓名
     }
 
     /**
@@ -251,18 +230,14 @@ public class RegisterActivity extends AppMvpBaseActivity implements View.OnClick
     public void registerSuccess(int userId) {
         Log.d(TAG, "registerSuccess: " + userId);
         finish();//销毁Activity
-        InformationActivity.actionStart(this, userId);
+        InformationActivity.actionStart(this, userId, mNameText.getText());
     }
 
-    /**
-     * 得到手机号
-     *
-     * @return
-     */
     @Override
-    public String getPhoneNum() {
+    public String getPhone() {
         return mTelPhone.getText();
     }
+
 
     /**
      * 得到验证码
@@ -272,6 +247,31 @@ public class RegisterActivity extends AppMvpBaseActivity implements View.OnClick
     @Override
     public String getVerCode() {
         return mVerCode.getText();
+    }
+
+    @Override
+    public String getLoginPass() {
+        return mLoginPassword.getText();
+    }
+
+    @Override
+    public String getPayPass() {
+        return mPayPassword.getText();
+    }
+
+    @Override
+    public String getPlaceUserPhone() {
+        return mPlaceUserPhone.getText();
+    }
+
+    @Override
+    public String getName() {
+        return mNameText.getText();
+    }
+
+    @Override
+    public String getRecommendUserPayPass() {
+        return mMyPayPassword.getText();
     }
 
 
@@ -288,27 +288,8 @@ public class RegisterActivity extends AppMvpBaseActivity implements View.OnClick
      * 当文本改变时
      */
     public void onTextChange() {
-        String phoneNum = mTelPhone.getText();
-        String vertexPhoneNum = mVertexUser.getText();
-        String verCode = mVerCode.getText();
-
-        String loginPass = mLoginPassword.getText();
-        String confirmLoginPass = mConfirmLoginPassword.getText();
-
-        String payPass = mPayPassword.getText();//支付密码
-        String confirmPayPass = mConfirmPayPassword.getText();
-
-        if (TextUtils.isEmpty(phoneNum) || phoneNum.length() != 11
-                || TextUtils.isEmpty(vertexPhoneNum) || vertexPhoneNum.length() != 11
-                || TextUtils.isEmpty(verCode)
-                || TextUtils.isEmpty(loginPass) || TextUtils.isEmpty(confirmLoginPass)
-                || TextUtils.isEmpty(payPass) || TextUtils.isEmpty(confirmPayPass)
-                || loginPass.length() < 6 || confirmLoginPass.length() < 6
-                || payPass.length() != 6 || confirmPayPass.length() != 6
-        )
-            setSubmitEnable(false);
-        else
-            setSubmitEnable(true);
+       /* setSubmitEnable(mPresenter.isRight());//设置提交是否可用
+        mConfirmBt.setEnabled(mPresenter.isRight());//提交按钮是否可用*/
     }
 
 

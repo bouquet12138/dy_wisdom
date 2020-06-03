@@ -145,7 +145,7 @@ public class InformationPresenter extends MVPBasePresenter<InformationContract.I
 
         UserBean userBean = getView().getModifyUserBean();
 
-        if (userBean.getHead_img_id() == 0 && userBean.getHead_img() != null) {
+        if (userBean.getHead_img() != null && (userBean.getHead_img_id() == null || userBean.getHead_img_id() == 0)) {
             userBean.setHead_img_id(userBean.getHead_img().getImage_id());//设置头像id
         }
 
@@ -170,5 +170,7 @@ public class InformationPresenter extends MVPBasePresenter<InformationContract.I
         });
 
     }
+
+
 
 }

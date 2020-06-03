@@ -27,7 +27,6 @@ import com.qmuiteam.qmui.widget.dialog.QMUIDialog;
 @Route(path = ARouterContract.LOGIN_LOGIN)
 public class LoginActivity extends MVPBaseActivity implements View.OnClickListener, LoginContract.IView {
 
-    //  private LoginPresenter mLoginPresenter = new LoginPresenter();
 
     private ImageView mHeadImage;
     private MyEditText mAccountEdit;

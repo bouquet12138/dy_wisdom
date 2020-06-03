@@ -25,8 +25,7 @@
                 android:id="@+id/nameText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:inputType="number"
-                app:maxLength="11"></com.example.common_view.editText.MyEditText>
+                app:maxLength="10"></com.example.common_view.editText.MyEditText>
         </LinearLayout>
 
         <LinearLayout style="@style/personInfoBackGroundStyle">
@@ -56,7 +55,7 @@
 
 
             <com.example.common_view.editText.MyEditText
-                android:id="@+id/vertex_user_phone"
+                android:id="@+id/place_user_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:hint="请输入安置者手机号"
@@ -66,7 +65,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/vertex_user_name"
+            android:id="@+id/place_user_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -119,31 +118,6 @@
                 android:layout_height="40dp" />
         </LinearLayout>
 
-        <!--确认登陆密码-->
-        <LinearLayout
-            style="@style/personInfoBackGroundStyle"
-            android:visibility="gone">
-
-            <TextView
-                style="@style/personalInfoTextStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="确认密码:" />
-
-            <com.example.common_view.editText.MyEditText
-                android:id="@+id/confirmLoginPassword"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:hint="6-20位"
-                app:inputType="textPassword"
-                app:maxLength="20"></com.example.common_view.editText.MyEditText>
-
-            <com.example.common_view.custom_view.ShowPasswordView
-                android:id="@+id/passwordBt2"
-                android:layout_width="40dp"
-                android:layout_height="40dp" />
-        </LinearLayout>
 
         <!--支付密码-->
         <LinearLayout style="@style/personInfoBackGroundStyle">
@@ -164,36 +138,11 @@
                 app:maxLength="6"></com.example.common_view.editText.MyEditText>
 
             <com.example.common_view.custom_view.ShowPasswordView
-                android:id="@+id/passwordBt3"
+                android:id="@+id/passwordBt2"
                 android:layout_width="40dp"
                 android:layout_height="40dp" />
         </LinearLayout>
 
-        <!--确认支付密码-->
-        <LinearLayout
-            style="@style/personInfoBackGroundStyle"
-            android:visibility="gone">
-
-            <TextView
-                style="@style/personalInfoTextStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="确认密码:" />
-
-            <com.example.common_view.editText.MyEditText
-                android:id="@+id/confirmPayPassword"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:hint="6位数字"
-                app:inputType="number_password"
-                app:maxLength="6"></com.example.common_view.editText.MyEditText>
-
-            <com.example.common_view.custom_view.ShowPasswordView
-                android:id="@+id/passwordBt4"
-                android:layout_width="40dp"
-                android:layout_height="40dp" />
-        </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -207,13 +156,14 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/set_a" />
 
-            <!--TODO:记得替换掉-->
+            <!--价格-->
             <TextView
+                android:id="@+id/moneyText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:padding="30dp"
-                android:text="￥3900"
+                android:text="￥"
                 android:textColor="#fff"
                 android:textSize="25dp"
                 android:textStyle="bold" />
@@ -232,11 +182,11 @@
                 android:textColor="@color/app_dark_text_color" />
 
             <TextView
+                android:id="@+id/moneyDetailText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:gravity="right"
-                android:text="销售积分1950  推广积分1950"
                 android:textSize="12dp" />
 
         </LinearLayout>
@@ -262,9 +212,10 @@
                 app:maxLength="6"></com.example.common_view.editText.MyEditText>
 
             <com.example.common_view.custom_view.ShowPasswordView
-                android:id="@+id/passwordBt5"
+                android:id="@+id/passwordBt3"
                 android:layout_width="40dp"
                 android:layout_height="40dp" />
+
         </LinearLayout>
 
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <!--  public static final String ROLE_ALLIANCE_BUSINESS = "加盟商";
+    public static final String ROLE_COOPERATIVE_PARTNER = "合作商";
+    public static final String ROLE_AGENT = "代理商";
+    public static final String ROLE_SERVICE = "服务商";
+    public static final String ROLE_SERVICE_CENTER = "服务中心";-->
+
+    <color name="my_team_alliance_business">#FF82B0</color>
+    <color name="my_team_cooperative_partner">#53B459</color>
+    <color name="my_team_agent">#DA4E4E</color>
+    <color name="my_team_service">#7064CF</color>
+    <color name="my_team_service_center">#FFB352</color>
+
+</resources>

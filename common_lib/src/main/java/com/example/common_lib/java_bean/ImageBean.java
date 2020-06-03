@@ -1,33 +1,22 @@
 package com.example.common_lib.java_bean;
 
+
 import java.io.Serializable;
 
 public class ImageBean implements Serializable {
 
-    private int image_id;
-    private String image_url;
-    private String image_name;
-    private int width;
-    private int height;
-    private String image_type;
-    private String image_describe;
+    private int image_id; //图片ID
+    private String image_url;//图片地址
+    private String image_name;//图片名称
+    private int width;//宽
+    private int height;//高
+    private String image_type;//图片类型
+    private String image_describe;//图片描述
+    private String insert_time;//插入时间
 
     public ImageBean(int image_id, String image_describe) {
         this.image_id = image_id;
         this.image_describe = image_describe;
-    }
-
-    @Override
-    public String toString() {
-        return "ImageBean{" +
-                "image_id=" + image_id +
-                ", image_url='" + image_url + '\'' +
-                ", image_name='" + image_name + '\'' +
-                ", width=" + width +
-                ", height=" + height +
-                ", image_type='" + image_type + '\'' +
-                ", image_describe='" + image_describe + '\'' +
-                '}';
     }
 
     public int getImage_id() {
@@ -84,5 +73,13 @@ public class ImageBean implements Serializable {
 
     public void setImage_describe(String image_describe) {
         this.image_describe = image_describe;
+    }
+
+    public String getInsert_time() {
+        return insert_time;
+    }
+
+    public void setInsert_time(String insert_time) {
+        this.insert_time = insert_time;
     }
 }

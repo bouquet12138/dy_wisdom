@@ -66,5 +66,7 @@ dependencies {
     if (!isModule.toBoolean()) {
         implementation project(':login_module')
         implementation project(':flash_module')
+        implementation project(':my_team_module')
+        implementation project(':sale_share_module')
     }
 }

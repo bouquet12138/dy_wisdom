@@ -78,6 +78,7 @@ public class InformationActivity extends SelectImagePermissionActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         showNormalView();//展示正常view
 
         setSubmitEnable(true);//提交按钮可用
@@ -86,8 +87,7 @@ public class InformationActivity extends SelectImagePermissionActivity
         initListener();
         initCity();
         mPresenter.attachView(this);//绑定一下view
-        //预先加载仿iOS滚轮实现的全部数据
-        mPicker.init(this);
+        mPicker.init(this); //预先加载仿iOS滚轮实现的全部数据
 
     }
 
@@ -97,6 +97,8 @@ public class InformationActivity extends SelectImagePermissionActivity
     private void initData() {
 
         mUserId = getIntent().getIntExtra("user_id", 0);
+        String userName = getIntent().getStringExtra("user_name");
+        mNameText.setText(userName);//设置用户姓名
 
         Log.d(TAG, "initData: " + mUserId);
 
@@ -134,6 +136,7 @@ public class InformationActivity extends SelectImagePermissionActivity
                 region += bean.getDistrict();
 
             mCityText.setText(region);//设置地区
+            mDetailAddressText.setText(bean.getDetail_address());//设置详细地址
             mIdCard.setText(bean.getId_card());//身份证号
             mBandCard.setText(bean.getBank_num());//银行卡号
         }
@@ -340,9 +343,10 @@ public class InformationActivity extends SelectImagePermissionActivity
     /**
      * 启动activity
      */
-    public static void actionStart(Context context, int user_id) {
+    public static void actionStart(Context context, int user_id, String user_name) {
         Intent intent = new Intent(context, InformationActivity.class);
         intent.putExtra("user_id", user_id);
+        intent.putExtra("user_name", user_name);
         context.startActivity(intent);
     }
 

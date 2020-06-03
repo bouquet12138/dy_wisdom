@@ -65,7 +65,7 @@ public class FlashMoreAdapter extends RecyclerView.Adapter<FlashMoreAdapter.View
                 holder.mTitleText.setVisibility(View.VISIBLE);//可见
                 holder.mTitleText.setText(bean.getTitle());//设置标题
             }
-            holder.mDateAndReadVolume.setText(DateUtil.formatDate(bean.getPublic_time())
+            holder.mDateAndReadVolume.setText(DateUtil.formatDate(bean.getInsert_time())
                     + " 阅览量：" + bean.getReading_volume());
 
             List<ImageBean> imageList = new ArrayList<>();

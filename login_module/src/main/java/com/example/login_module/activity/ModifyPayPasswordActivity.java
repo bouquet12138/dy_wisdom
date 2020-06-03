@@ -37,7 +37,6 @@ public class ModifyPayPasswordActivity extends AppMvpBaseActivity implements Mod
         super.onCreate(savedInstanceState);
         initView();
         initListener();
-
         mPresenter.attachView(this);//绑定view
         setSubmitEnable(false);//提交按钮不可用
         showNormalView();//展示正常的view
@@ -138,8 +137,8 @@ public class ModifyPayPasswordActivity extends AppMvpBaseActivity implements Mod
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         mPresenter.detachView();//解除绑定
+        super.onDestroy();
     }
 
     @Override

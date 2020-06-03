@@ -1,2 +1,3 @@
-include ':main_module', ':common_lib', ':base_lib', ':common_view', ':ui', ':login_module', ':flash_module', ':sale_share_module'
+include ':main_module', ':common_lib', ':base_lib', ':common_view', ':ui', ':login_module', ':flash_module', ':sale_share_module',
+        ':my_team_module', ':spread_module',':redeem_module'
 rootProject.name='WisdomConsumption'

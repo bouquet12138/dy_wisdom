@@ -17,18 +17,18 @@ import com.example.login_module.presenter.ModifyLoginPasswordPresenter;
 @Route(path = ARouterContract.LOGIN_MODIFY_LOGIN_PW)
 public class ModifyLoginPasswordActivity extends AppMvpBaseActivity implements ModifyLoginPasswordContract.IView {
 
-    private MyEditText mOldPasswordEdit;
-    private TextView mOldPasswordHint;
-    private ShowPasswordView mOldPasswordImg;
+    private MyEditText mOldPasswordEdit;//旧密码
+    private TextView mOldPasswordHint;//旧密码提醒
+    private ShowPasswordView mOldPasswordImg;//展示明文密码
 
-    private MyEditText mNewPasswordEdit;
-    private TextView mNewPasswordHint;
-    private ShowPasswordView mNewPasswordImg;
+    private MyEditText mNewPasswordEdit;//新密码
+    private TextView mNewPasswordHint;//新密码提醒
+    private ShowPasswordView mNewPasswordImg;//展示新密码明文密码
 
 
-    private MyEditText mConfirmPasswordEdit;
-    private TextView mConfirmPasswordHint;
-    private ShowPasswordView mConfirmPasswordImg;
+    private MyEditText mConfirmPasswordEdit;//确认新密码
+    private TextView mConfirmPasswordHint;//确认新密码提醒
+    private ShowPasswordView mConfirmPasswordImg;//展示确认新密码明文密码
 
     private ModifyLoginPasswordPresenter mPresenter;//修改密码
 
@@ -60,9 +60,11 @@ public class ModifyLoginPasswordActivity extends AppMvpBaseActivity implements M
         return R.layout.login_layout_modify_login_password;
     }
 
+    /**
+     * 刷新
+     */
     @Override
     protected void onRefresh() {
-
     }
 
 
@@ -79,6 +81,7 @@ public class ModifyLoginPasswordActivity extends AppMvpBaseActivity implements M
         mNewPasswordEdit = mNormalView.findViewById(R.id.newPasswordEdit);
         mOldPasswordHint = mNormalView.findViewById(R.id.oldPasswordHint);
         mOldPasswordEdit = mNormalView.findViewById(R.id.oldPasswordEdit);
+
         mNewPasswordHint = mNormalView.findViewById(R.id.newPasswordHint);
         mConfirmPasswordEdit = mNormalView.findViewById(R.id.confirmPasswordEdit);
         mConfirmPasswordHint = mNormalView.findViewById(R.id.confirmPasswordHint);
@@ -138,8 +141,8 @@ public class ModifyLoginPasswordActivity extends AppMvpBaseActivity implements M
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         mPresenter.detachView();//解除绑定
+        super.onDestroy();
     }
 
     @Override

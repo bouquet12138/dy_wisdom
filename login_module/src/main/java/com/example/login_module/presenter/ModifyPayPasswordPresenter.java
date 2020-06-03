@@ -10,6 +10,7 @@ import com.example.base_lib.listener.OnGetInfoListener;
 import com.example.common_lib.info.NowUserInfo;
 import com.example.common_lib.java_bean.BaseBean;
 import com.example.common_lib.java_bean.UserBean;
+import com.example.common_lib.model.LoginAndRegisterModel;
 import com.example.common_lib.model.UserModel;
 import com.example.login_module.contract.ModifyPayPasswordContract;
 
@@ -17,7 +18,7 @@ import com.example.login_module.contract.ModifyPayPasswordContract;
 public class ModifyPayPasswordPresenter extends MVPBasePresenter<ModifyPayPasswordContract.IView>
         implements ModifyPayPasswordContract.IPresenter {
 
-    private UserModel mModel = new UserModel();
+    private LoginAndRegisterModel mModel = new LoginAndRegisterModel();
 
     private final int SUCCESS = 0;//成功
     private final int NET_ERROR = 1;//网络错误
@@ -34,7 +35,6 @@ public class ModifyPayPasswordPresenter extends MVPBasePresenter<ModifyPayPasswo
                     getView().showToast(baseBean.getMsg());//展示提示信息
                     if (baseBean.getCode() == 1) {
                         getView().finishActivity();//销毁Activity
-                        NowUserInfo.getNowUserInfo().setLogin_pass(mNewPassword);//设置新密码
                         NowUserInfo.setNowUserInfo(NowUserInfo.getNowUserInfo());
                     }
                     break;
@@ -47,14 +47,13 @@ public class ModifyPayPasswordPresenter extends MVPBasePresenter<ModifyPayPasswo
             }
         }
     };
-    private String mNewPassword;
 
     @Override
     public void modifyPassword() {
         if (!isViewAttached())
             return;
         String oldPassword = getView().getOldPassword();
-        mNewPassword = getView().getNewPassword();
+        String newPassword = getView().getNewPassword();
         UserBean userBean = NowUserInfo.getNowUserInfo();//用户信息
         if (userBean == null)
             return;
@@ -64,7 +63,7 @@ public class ModifyPayPasswordPresenter extends MVPBasePresenter<ModifyPayPasswo
 
         getView().showLoading("密码修改中");
         mModel.modify_pay_password_with_old(userBean.getUser_id(),
-                oldPassword, mNewPassword, new OnGetInfoListener<BaseBean>() {
+                oldPassword, newPassword, new OnGetInfoListener<BaseBean>() {
                     @Override
                     public void onComplete() {
                         mHandler.sendEmptyMessage(COMPLETE);
@@ -99,7 +98,7 @@ public class ModifyPayPasswordPresenter extends MVPBasePresenter<ModifyPayPasswo
         getView().setConfirmPasswordHint("");
 
         if (!TextUtils.isEmpty(newPassword) && newPassword.equals(oldPassword))
-            getView().setNewPasswordHint("新旧密码一致");
+            getView().setOldPasswordHint("新旧密码一致");
 
         if (!TextUtils.isEmpty(newPassword) && newPassword.length() < 6)
             getView().setNewPasswordHint("新密码长度至少为6");

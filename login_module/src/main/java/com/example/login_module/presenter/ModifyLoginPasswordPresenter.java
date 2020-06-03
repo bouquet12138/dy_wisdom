@@ -9,14 +9,14 @@ import com.example.base_lib.listener.OnGetInfoListener;
 import com.example.common_lib.info.NowUserInfo;
 import com.example.common_lib.java_bean.BaseBean;
 import com.example.common_lib.java_bean.UserBean;
-import com.example.common_lib.model.UserModel;
+import com.example.common_lib.model.LoginAndRegisterModel;
 import com.example.login_module.contract.ModifyLoginPasswordContract;
 
 
 public class ModifyLoginPasswordPresenter extends MVPBasePresenter<ModifyLoginPasswordContract.IView>
         implements ModifyLoginPasswordContract.IPresenter {
 
-    private UserModel mModel = new UserModel();
+    private LoginAndRegisterModel mModel = new LoginAndRegisterModel();
 
     private final int SUCCESS = 0;//成功
     private final int NET_ERROR = 1;//网络错误
@@ -30,15 +30,16 @@ public class ModifyLoginPasswordPresenter extends MVPBasePresenter<ModifyLoginPa
             switch (msg.what) {
                 case SUCCESS:
                     BaseBean baseBean = (BaseBean) msg.obj;
-                    getView().showToast(baseBean.getMsg());//展示提示信息
                     if (baseBean.getCode() == 1) {
+                        getView().showToast(baseBean.getMsg());//展示提示信息
                         getView().finishActivity();//销毁Activity
-                        NowUserInfo.getNowUserInfo().setLogin_pass(mNewPassword);//设置新密码
                         NowUserInfo.setNowUserInfo(NowUserInfo.getNowUserInfo());
+                    } else {
+                        getView().showErrorHint(baseBean.getMsg());//展示信息
                     }
                     break;
                 case NET_ERROR:
-                    getView().showToast("网络错误");
+                    getView().showErrorHint("网络错误");
                     break;
                 case COMPLETE:
                     getView().hideLoading();//隐藏进度框
@@ -46,14 +47,13 @@ public class ModifyLoginPasswordPresenter extends MVPBasePresenter<ModifyLoginPa
             }
         }
     };
-    private String mNewPassword;
 
     @Override
     public void modifyPassword() {
         if (!isViewAttached())
             return;
-        String oldPassword = getView().getOldPassword();
-        mNewPassword = getView().getNewPassword();
+        String oldPassword = getView().getOldPassword();//得到旧密码
+        String newPassword = getView().getNewPassword();//得到新密码
         UserBean userBean = NowUserInfo.getNowUserInfo();//用户信息
         if (userBean == null)
             return;
@@ -63,7 +63,7 @@ public class ModifyLoginPasswordPresenter extends MVPBasePresenter<ModifyLoginPa
 
         getView().showLoading("密码修改中");
         mModel.modify_login_password_with_old(userBean.getUser_id(),
-                oldPassword, mNewPassword, new OnGetInfoListener<BaseBean>() {
+                oldPassword, newPassword, new OnGetInfoListener<BaseBean>() {
                     @Override
                     public void onComplete() {
                         mHandler.sendEmptyMessage(COMPLETE);
@@ -98,7 +98,7 @@ public class ModifyLoginPasswordPresenter extends MVPBasePresenter<ModifyLoginPa
         getView().setConfirmPasswordHint("");
 
         if (!TextUtils.isEmpty(newPassword) && newPassword.equals(oldPassword))
-            getView().setNewPasswordHint("新旧密码一致");
+            getView().setOldPasswordHint("新旧密码一致");
 
         if (!TextUtils.isEmpty(newPassword) && newPassword.length() < 6)
             getView().setNewPasswordHint("新密码长度至少为6");

@@ -79,21 +79,21 @@ public class UserModel {
     /**
      * 得到用户信息
      *
-     * @param user_phone
+     * @param phone
      * @param listener
      */
-    public void getUserInfoWithPhone(String user_phone, OnGetInfoListener<BaseBean<UserBean>> listener) {
+    public void getUserInfoWithPhone(String phone, OnGetInfoListener<BaseBean<UserBean>> listener) {
 
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("phone_num", user_phone);
+            jsonObject.put("phone", phone);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         Log.d(TAG, "getUserInfoWithPhone: " + jsonObject.toString());
 
-        OkHttpUtil.postJson(ServerInfo.getServerAddress("get_user_info_with_phone"), jsonObject.toString(), new okhttp3.Callback() {
+        OkHttpUtil.postJson(ServerInfo.getServerAddress("get_user_info_by_phone"), jsonObject.toString(), new okhttp3.Callback() {
 
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
@@ -117,54 +117,6 @@ public class UserModel {
             }
         });
 
-    }
-
-    /**
-     * 修改登陆密码
-     *
-     * @param user_id
-     * @param old_login_password
-     * @param new_login_password
-     */
-    public void modify_login_password_with_old(int user_id, String old_login_password,
-                                               String new_login_password, OnGetInfoListener<BaseBean> listener) {
-
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("user_id", user_id);
-            jsonObject.put("old_login_password", old_login_password);
-            jsonObject.put("new_login_password", new_login_password);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        Log.d(TAG, "modify_login_password_with_old: " + jsonObject.toString());
-
-        ModelUtil.postJson(jsonObject.toString(), "modify_login_password_with_old", listener);
-    }
-
-    /**
-     * 修改支付密码
-     *
-     * @param user_id
-     * @param old_pay_password
-     * @param new_pay_password
-     */
-    public void modify_pay_password_with_old(int user_id, String old_pay_password,
-                                             String new_pay_password, OnGetInfoListener<BaseBean> listener) {
-
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("user_id", user_id);
-            jsonObject.put("old_pay_password", old_pay_password);
-            jsonObject.put("new_pay_password", new_pay_password);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        Log.d(TAG, "modify_pay_password_with_old: " + jsonObject.toString());
-
-        ModelUtil.postJson(jsonObject.toString(), "modify_pay_password_with_old", listener);
     }
 
 

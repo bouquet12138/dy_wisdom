@@ -63,7 +63,7 @@ public class FlashDetailActivity extends AppMvpBaseActivity implements FlashDeta
         Log.d(TAG, "initData: " + mFlashBean);
 
         mTitle.setText(mFlashBean.getTitle());
-        mDateText.setText(mFlashBean.getPublic_time());//发布时间
+        mDateText.setText(mFlashBean.getInsert_time());//发布时间
         mReadVolumeText.setText("阅读量：" + mFlashBean.getReading_volume());
 
         FlashContentAdapter prizeContentAdapter =

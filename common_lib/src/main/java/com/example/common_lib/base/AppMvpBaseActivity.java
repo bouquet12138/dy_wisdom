@@ -132,6 +132,11 @@ public abstract class AppMvpBaseActivity extends MVPBaseActivity implements IApp
     @Override
     public void setSubmitEnable(boolean enable) {
         mRightText.setEnabled(enable);
+        if (enable)
+            mRightText.setAlpha(1);
+        else
+            mRightText.setAlpha(0.5f);
+
     }
 
     /**

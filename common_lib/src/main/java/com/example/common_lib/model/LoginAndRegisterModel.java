@@ -66,26 +66,27 @@ public class LoginAndRegisterModel {
     /**
      * 注册
      *
-     * @param phone_num
-     * @param login_password
+     * @param phone
+     * @param login_pass
      * @param listener
      */
-    public void register(String phone_num, String login_password, String pay_password, String recommend_user_phone,
-                         String vertex_user_phone, OnGetInfoListener<BaseBean<Integer>> listener) {
+    public void register(String phone, String login_pass, String pay_pass, int recommend_user_id,
+                         int placement_user_id, String name, String recommend_user_pay_pass, OnGetInfoListener<BaseBean<Integer>> listener) {
 
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("phone_num", phone_num);
-            jsonObject.put("login_password", login_password);
-            jsonObject.put("pay_password", pay_password);
-            jsonObject.put("recommend_user_phone", recommend_user_phone);
-            jsonObject.put("recommend_user_phone", recommend_user_phone);
-            jsonObject.put("vertex_user_phone", vertex_user_phone);
+            jsonObject.put("phone", phone);
+            jsonObject.put("login_pass", login_pass);
+            jsonObject.put("pay_pass", pay_pass);
+            jsonObject.put("recommend_user_id", recommend_user_id);
+            jsonObject.put("placement_user_id", placement_user_id);
+            jsonObject.put("name", name);
+            jsonObject.put("recommend_user_pay_pass", recommend_user_pay_pass);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        OkHttpUtil.postJson(ServerInfo.getServerAddress("register"), jsonObject.toString(), new Callback() {
+        OkHttpUtil.postJson(ServerInfo.getServerAddress("register_user"), jsonObject.toString(), new Callback() {
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
                 Log.d(TAG, "onFailure: " + e);
@@ -112,17 +113,17 @@ public class LoginAndRegisterModel {
      * 修改登陆密码
      *
      * @param user_id
-     * @param old_login_password
-     * @param new_login_password
+     * @param old_login_pass
+     * @param new_login_pass
      */
-    public void modify_login_password_with_old(int user_id, String old_login_password,
-                                               String new_login_password, OnGetInfoListener<BaseBean> listener) {
+    public void modify_login_password_with_old(int user_id, String old_login_pass,
+                                               String new_login_pass, OnGetInfoListener<BaseBean> listener) {
 
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("user_id", user_id);
-            jsonObject.put("old_login_pass", old_login_password);
-            jsonObject.put("new_login_pass", new_login_password);
+            jsonObject.put("login_pass", old_login_pass);
+            jsonObject.put("new_login_pass", new_login_pass);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -135,15 +136,15 @@ public class LoginAndRegisterModel {
     /**
      * 修改登陆密码
      *
-     * @param user_id
+     * @param phone
      * @param new_login_password
      */
-    public void modify_login_password(int user_id, String new_login_password,
+    public void modify_login_password(String phone, String new_login_password,
                                       OnGetInfoListener<BaseBean> listener) {
 
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("user_id", user_id);
+            jsonObject.put("phone", phone);
             jsonObject.put("new_login_pass", new_login_password);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -167,7 +168,7 @@ public class LoginAndRegisterModel {
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("user_id", user_id);
-            jsonObject.put("old_pay_pass", old_pay_password);
+            jsonObject.put("pay_pass", old_pay_password);
             jsonObject.put("new_pay_pass", new_pay_password);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -181,15 +182,15 @@ public class LoginAndRegisterModel {
     /**
      * 修改支付密码
      *
-     * @param user_id
+     * @param phone
      * @param new_pay_password
      */
-    public void modify_pay_password(int user_id, String new_pay_password,
+    public void modify_pay_password(String phone, String new_pay_password,
                                     OnGetInfoListener<BaseBean> listener) {
 
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("user_id", user_id);
+            jsonObject.put("phone", phone);
             jsonObject.put("new_pay_pass", new_pay_password);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -199,7 +200,6 @@ public class LoginAndRegisterModel {
 
         ModelUtil.postJson(jsonObject.toString(), "modify_pay_password", listener);
     }
-
 
 
 }

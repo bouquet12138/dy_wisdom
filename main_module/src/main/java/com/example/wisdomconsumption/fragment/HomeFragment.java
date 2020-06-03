@@ -5,41 +5,40 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ScrollView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.SizeUtils;
+import com.example.base_lib.base.BaseFragment;
 import com.example.base_lib.util.CornerUtil;
 import com.example.common_lib.contract.ARouterContract;
-import com.example.common_lib.java_bean.ImageBean;
+import com.example.common_lib.java_bean.BannerBean;
 import com.example.flash_module.fragment.FlashFragment;
 import com.example.wisdomconsumption.R;
 import com.example.wisdomconsumption.activity.AboutUsActivity;
 import com.example.wisdomconsumption.activity.PromotionActivity;
 import com.example.wisdomconsumption.activity.ServiceCenterActivity;
-import com.example.wisdomconsumption.adapter.ImageAdapter;
+import com.example.wisdomconsumption.adapter.MyBannerAdapter;
+import com.example.wisdomconsumption.contract.HomeContract;
+import com.example.wisdomconsumption.presenter.HomePresenter;
 import com.youth.banner.Banner;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 
-public class HomeFragment extends Fragment implements View.OnClickListener {
+public class HomeFragment extends BaseFragment implements View.OnClickListener, HomeContract.IView {
 
-    protected View mView;
-
-    private TextView mTitle;
+    private NestedScrollView mScrollView;//滚动view
     private Banner mBanner;
 
     private ViewGroup mMyShop;
@@ -52,41 +51,33 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private ViewGroup mCustomer_center;
     private ViewGroup mAbout_us;
 
+    private HomePresenter mPresenter = new HomePresenter();
+
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.main_fragment_home, container, false);
+    protected int getContentViewId() {
+        return R.layout.main_fragment_home;
+    }
+
+    @Override
+    protected void initAllMembersView(Bundle savedInstanceState) {
         initView();
         initListener();
+        mPresenter.attachView(this);//绑定一下
         initData();
-        return mView;
     }
 
     private void initData() {
-        initBanner();
+        mPresenter.getBannerInfo();//得到轮播图信息
         FlashFragment flashFragment = new FlashFragment();
         replaceFragment(flashFragment);//替换碎片
     }
 
-    /**
-     * 初始化banner
-     */
-    private void initBanner() {
-        List<ImageBean> imageList = new ArrayList<>();
-
-        imageList.add(new ImageBean(R.drawable.main_shop_a, "配送中心图片"));
-        imageList.add(new ImageBean(R.drawable.main_shop_b, "蔬菜水果批发中心"));
-
-        mBanner.setAdapter(new ImageAdapter(imageList, getContext()));
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) //加个圆角
-            CornerUtil.clipViewCornerByDp(mBanner, SizeUtils.dp2px(8));
-
-        mBanner.start();//启动banner
-    }
 
     private void initView() {
-        mTitle = mView.findViewById(R.id.title);
+
+        mScrollView = mView.findViewById(R.id.scrollView);
+
         mBanner = mView.findViewById(R.id.banner);
         mMyShop = mView.findViewById(R.id.myShop);
         mIntegralShop = mView.findViewById(R.id.integralShop);//积分商城
@@ -115,10 +106,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         mAbout_us.setOnClickListener(this);
     }
 
+    /**
+     * 销毁时
+     */
     @Override
     public void onDestroy() {
-        super.onDestroy();
+        mPresenter.detachView();//解除绑定
         mBanner.stop();//停止
+        super.onDestroy();
     }
 
     @Override
@@ -169,5 +164,29 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         transaction.commit();
     }
 
+    private long mLastRefreshTime = 0;//上一次刷新
 
+    /**
+     * 刷新主页
+     */
+    public void refresh() {
+        long nowRefreshTime = System.currentTimeMillis();//当前时间
+        if (nowRefreshTime - mLastRefreshTime > 5000) {
+            initData();//重新初始化一下数据
+            mLastRefreshTime = nowRefreshTime;
+        }
+        mScrollView.fullScroll(ScrollView.FOCUS_UP);//滚动到顶部
+
+    }
+
+    @Override
+    public void setBannerInfo(List<BannerBean> bannerList) {
+
+        mBanner.setAdapter(new MyBannerAdapter(bannerList, getContext()));
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) //加个圆角
+            CornerUtil.clipViewCornerByDp(mBanner, SizeUtils.dp2px(8));
+
+        mBanner.start();//启动banner
+    }
 }

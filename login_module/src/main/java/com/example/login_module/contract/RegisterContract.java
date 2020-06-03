@@ -1,11 +1,18 @@
 package com.example.login_module.contract;
 
 import com.example.common_lib.base.IAppMvpView;
+import com.example.common_lib.java_bean.SetBean;
 import com.example.common_lib.java_bean.UserBean;
 
 public interface RegisterContract {
 
     interface IView extends IAppMvpView {
+
+        /**
+         * 设置套餐信息
+         * @param setBean
+         */
+        void setSetInfo(SetBean setBean);
 
         /**
          * 设置按钮是否可用
@@ -21,13 +28,6 @@ public interface RegisterContract {
          */
         void setSendBtText(String text);
 
-        /**
-         * 用户填写的是否正确
-         *
-         * @return
-         */
-        boolean isRight();
-
 
         /**
          * 设置用户信息
@@ -42,13 +42,46 @@ public interface RegisterContract {
         void registerSuccess(int userId);
 
 
-        String getPhoneNum();
+        String getPhone();
 
         String getVerCode();
+
+
+        /**
+         * 得到登陆密码
+         *
+         * @return
+         */
+        String getLoginPass();
+
+
+        String getPayPass();
+
+
+        /**
+         * 得到安置者手机号
+         *
+         * @return
+         */
+        String getPlaceUserPhone();
+
+        /**
+         * 得到推荐人的支付密码
+         *
+         * @return
+         */
+        String getName();
+
+        String getRecommendUserPayPass();
     }
 
 
     interface IPresenter {
+
+        /**
+         * 得到套餐信息
+         */
+        void getSetInfo();
 
         /**
          * 发送验证码
@@ -58,13 +91,19 @@ public interface RegisterContract {
         /**
          * 注册
          */
-        void register(String phone_num, String login_password, String pay_password,
-                      String recommend_user_phone, String vertex_user_phone);
+        void register();
 
         /**
          * 得到用户信息
          */
-        void getUserInfo(String phone_num);
+        void getUserInfo();
+
+        /**
+         * 判断用户填写的信息是否正确
+         *
+         * @return
+         */
+        boolean isRight();
     }
 
 }

@@ -17,5 +17,11 @@ public class ARouterContract {
     public static final String FLASH_FLASH = "/flash/flash";
     public static final String FLASH_DETAIL = "/flash/detail";
 
+    public static final String MY_TEAM_MY_TEAM = "/my_team/my_team";
+
+    public static final String SALE_SHARE_SALE_SHARE = "/sale_share/sale_share";
+
+    public static final String SPREAD_SPREAD = "/spread/spread";
+
 
 }

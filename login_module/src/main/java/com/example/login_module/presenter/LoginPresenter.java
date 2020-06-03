@@ -49,7 +49,7 @@ public class LoginPresenter extends MVPBasePresenter<LoginContract.IView>
                         Log.d(TAG, "handleMessage: " + baseBean.getData());
                         saveData();//设置数据
                     } else {
-                        getView().showErrorHint("网络错误");
+                        getView().showErrorHint(baseBean.getMsg());//弹出后台返回的信息
                         getView().hideLoading();//隐藏进度框
                     }
                     break;

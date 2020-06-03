@@ -33,11 +33,7 @@ public class ForgetPassPresenter extends MVPBasePresenter<ForgetPassContract.IVi
 
     private final int QR_COUNT = 3;//短信验证码计数
 
-    private final int INFO_ON_RESULT = 4;
-    private final int INFO_NET_ERROR = 5;//网络错误
-    private final int INFO_ON_COMPLETE = 6;//完成
-
-    private final int SUBMIT_ON_RESULT = 7;
+    private final int SUBMIT_ON_RESULT = 4;
     private final int SUBMIT_NET_ERROR = 8;//网络错误
     private final int SUBMIT_ON_COMPLETE = 9;//完成
 
@@ -75,20 +71,6 @@ public class ForgetPassPresenter extends MVPBasePresenter<ForgetPassContract.IVi
                     }
                     mCountNum--;
                     break;
-                case INFO_ON_RESULT:
-                    BaseBean<UserBean> baseBean1 = (BaseBean<UserBean>) msg.obj;//得到用户id
-
-                    if (baseBean1.getCode() == 1) {
-                        submitPassword(baseBean1.getData().getUser_id());
-                    } else {
-                        getView().showToast("该手机号不存在");//弹出提示信息
-                        getView().hideLoading();//隐藏进度框
-                    }
-                    break;
-                case INFO_NET_ERROR:
-                    getView().hideLoading();//隐藏对话框
-                    getView().showToast("网络错误");
-                    break;
                 case SUBMIT_ON_RESULT:
                     BaseBean<UserBean> baseBean2 = (BaseBean<UserBean>) msg.obj;//得到用户id
                     getView().showToast(baseBean2.getMsg());//弹出提示信息
@@ -105,57 +87,6 @@ public class ForgetPassPresenter extends MVPBasePresenter<ForgetPassContract.IVi
             }
         }
     };
-
-    /**
-     * 提交密码
-     *
-     * @param user_id
-     */
-    private void submitPassword(int user_id) {
-
-        if (getView().isForgetPay()) {//忘记支付密码
-            mModel.modify_pay_password(user_id, getView().getLoginPassword(), new OnGetInfoListener<BaseBean>() {
-                @Override
-                public void onComplete() {
-                    mHandler.sendEmptyMessage(SUBMIT_ON_COMPLETE);
-                }
-
-                @Override
-                public void onNetError() {
-                    mHandler.sendEmptyMessage(SUBMIT_NET_ERROR);//网络错误
-                }
-
-                @Override
-                public void onResult(BaseBean info) {
-                    Message msg = mHandler.obtainMessage();
-                    msg.what = SUBMIT_ON_RESULT;//结果
-                    msg.obj = info;
-                    mHandler.sendMessage(msg);//发送信息
-                }
-            });
-        } else {
-            mModel.modify_login_password(user_id, getView().getLoginPassword(), new OnGetInfoListener<BaseBean>() {
-                @Override
-                public void onComplete() {
-                    mHandler.sendEmptyMessage(SUBMIT_ON_COMPLETE);
-                }
-
-                @Override
-                public void onNetError() {
-                    mHandler.sendEmptyMessage(SUBMIT_NET_ERROR);//网络错误
-                }
-
-                @Override
-                public void onResult(BaseBean info) {
-                    Message msg = mHandler.obtainMessage();
-                    msg.what = SUBMIT_ON_RESULT;//结果
-                    msg.obj = info;
-                    mHandler.sendMessage(msg);//发送信息
-                }
-            });
-        }
-
-    }
 
 
     /**
@@ -226,26 +157,48 @@ public class ForgetPassPresenter extends MVPBasePresenter<ForgetPassContract.IVi
             return;
         }
 
+        if (getView().isForgetPay()) {//忘记支付密码
+            mModel.modify_pay_password(mobile, getView().getLoginPassword(), new OnGetInfoListener<BaseBean>() {
+                @Override
+                public void onComplete() {
+                    mHandler.sendEmptyMessage(SUBMIT_ON_COMPLETE);
+                }
 
-        mUserModel.getUserInfoWithPhone(getView().getPhoneNum(), new OnGetInfoListener<BaseBean<UserBean>>() {
-            @Override
-            public void onComplete() {
-                mHandler.sendEmptyMessage(INFO_ON_COMPLETE);
-            }
+                @Override
+                public void onNetError() {
+                    mHandler.sendEmptyMessage(SUBMIT_NET_ERROR);//网络错误
+                }
 
-            @Override
-            public void onNetError() {
-                mHandler.sendEmptyMessage(INFO_NET_ERROR);//网络错误
-            }
+                @Override
+                public void onResult(BaseBean info) {
+                    Message msg = mHandler.obtainMessage();
+                    msg.what = SUBMIT_ON_RESULT;//结果
+                    msg.obj = info;
+                    mHandler.sendMessage(msg);//发送信息
+                }
+            });
+        } else {
+            mModel.modify_login_password(mobile, getView().getLoginPassword(), new OnGetInfoListener<BaseBean>() {
+                @Override
+                public void onComplete() {
+                    mHandler.sendEmptyMessage(SUBMIT_ON_COMPLETE);
+                }
 
-            @Override
-            public void onResult(BaseBean<UserBean> info) {
-                Message msg = mHandler.obtainMessage();
-                msg.what = INFO_ON_RESULT;//结果
-                msg.obj = info;
-                mHandler.sendMessage(msg);//发送信息
-            }
-        });
+                @Override
+                public void onNetError() {
+                    mHandler.sendEmptyMessage(SUBMIT_NET_ERROR);//网络错误
+                }
+
+                @Override
+                public void onResult(BaseBean info) {
+                    Message msg = mHandler.obtainMessage();
+                    msg.what = SUBMIT_ON_RESULT;//结果
+                    msg.obj = info;
+                    mHandler.sendMessage(msg);//发送信息
+                }
+            });
+        }
+
     }
 
 

@@ -1,8 +1,8 @@
 package com.example.common_lib.java_bean;
 
+import java.io.Serializable;
 
-public class UserBean {
-
+public class UserBean implements Serializable {
 
     public static final String MERCHANT_NO = "0";
     public static final String MERCHANT_YES = "1";
@@ -10,11 +10,11 @@ public class UserBean {
     public static final String SEX_MAN = "男";
     public static final String SEX_WOMAN = "女";
 
-    public static final String ROLE_ALLIANCE_BUSINESS = "1";
-    public static final String ROLE_COOPERATIVE_PARTNER = "2";
-    public static final String ROLE_AGENT = "3";
-    public static final String ROLE_FACILITATOR = "4";
-    public static final String ROLE_SERVICE_CENTER = "5";
+    public static final String ROLE_ALLIANCE_BUSINESS = "加盟商";
+    public static final String ROLE_COOPERATIVE_PARTNER = "合作商";
+    public static final String ROLE_AGENT = "代理商";
+    public static final String ROLE_SERVICE = "服务商";
+    public static final String ROLE_SERVICE_CENTER = "服务中心";
 
     public static final String ENABLED_NOT = "0";
     public static final String ENABLED_YES = "1";
@@ -23,8 +23,8 @@ public class UserBean {
     private int user_id;
     private String is_merchant;
     private String id_card;
-    private int recommend_user_id;
-    private int placement_user_id;
+    private Integer recommend_user_id;
+    private Integer placement_user_id;
     private String name;
     private String sex;
     private String phone;
@@ -37,10 +37,12 @@ public class UserBean {
     private String role;
     private String enabled;
     private int integral;
+
     private int sale_share_integral;
     private int redeem_integral;
     private int bonus_integral;
     private int spread_integral;
+
     private int profit_merchant;
     private int profit_frozen_merchant;
     private String uuid;
@@ -53,6 +55,8 @@ public class UserBean {
 
     private String new_pay_pass;
     private String new_login_pass;
+
+    private int child_num;//孩子数
 
     //对应的头像信息
     private ImageBean head_img;
@@ -82,19 +86,19 @@ public class UserBean {
         this.id_card = id_card;
     }
 
-    public int getRecommend_user_id() {
+    public Integer getRecommend_user_id() {
         return recommend_user_id;
     }
 
-    public void setRecommend_user_id(int recommend_user_id) {
+    public void setRecommend_user_id(Integer recommend_user_id) {
         this.recommend_user_id = recommend_user_id;
     }
 
-    public int getPlacement_user_id() {
+    public Integer getPlacement_user_id() {
         return placement_user_id;
     }
 
-    public void setPlacement_user_id(int placement_user_id) {
+    public void setPlacement_user_id(Integer placement_user_id) {
         this.placement_user_id = placement_user_id;
     }
 
@@ -314,6 +318,14 @@ public class UserBean {
         this.new_login_pass = new_login_pass;
     }
 
+    public int getChild_num() {
+        return child_num;
+    }
+
+    public void setChild_num(int child_num) {
+        this.child_num = child_num;
+    }
+
     public ImageBean getHead_img() {
         return head_img;
     }
@@ -325,8 +337,21 @@ public class UserBean {
     /**
      * 设置用户信息
      *
-     * @param bean
+     * @param modifyUserBean
      */
-    public void setInfo(UserBean bean) {
+    public void setInfo(UserBean modifyUserBean) {
+
+        this.head_img_id = modifyUserBean.getHead_img_id();
+        this.name = modifyUserBean.getName();
+        this.sex = modifyUserBean.getSex();
+        this.birthday = modifyUserBean.getBirthday();//生日
+        this.province = modifyUserBean.getProvince();
+        this.city = modifyUserBean.getCity();
+        this.district = modifyUserBean.getDistrict();//区
+        this.detail_address = modifyUserBean.getDetail_address();//详细地址
+        this.id_card = modifyUserBean.id_card;
+        this.bank_num = modifyUserBean.getBank_num();
+        this.head_img = modifyUserBean.getHead_img();
+
     }
 }

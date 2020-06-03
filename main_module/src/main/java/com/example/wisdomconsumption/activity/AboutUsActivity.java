@@ -2,15 +2,19 @@ package com.example.wisdomconsumption.activity;
 
 import android.os.Bundle;
 import android.text.Html;
+import android.text.TextUtils;
 import android.widget.TextView;
 
 import com.example.common_lib.base.AppMvpBaseActivity;
 import com.example.wisdomconsumption.R;
+import com.example.wisdomconsumption.contract.AboutUsContract;
+import com.example.wisdomconsumption.presenter.AboutUsPresenter;
 
 
-public class AboutUsActivity extends AppMvpBaseActivity {
+public class AboutUsActivity extends AppMvpBaseActivity implements AboutUsContract.IView {
 
     private TextView mAboutUs;
+    private AboutUsPresenter mPresenter = new AboutUsPresenter();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +22,9 @@ public class AboutUsActivity extends AppMvpBaseActivity {
         setSubmitEnable(false);//提交不可用
         showNormalView();//展示正常view
         initView();
-        mAboutUs.setText(Html.fromHtml(getResources().getString(R.string.main_about_us)));
+        mPresenter.attachView(this);//绑定一下
+        mPresenter.getAboutUsInfo();//获取数据
+        //mAboutUs.setText(Html.fromHtml(getResources().getString(R.string.main_about_us)));
     }
 
     @Override
@@ -48,5 +54,27 @@ public class AboutUsActivity extends AppMvpBaseActivity {
 
     private void initView() {
         mAboutUs = findViewById(R.id.aboutUs);
+    }
+
+    /**
+     * 销毁的时候
+     */
+    @Override
+    protected void onDestroy() {
+        mPresenter.detachView();//解除绑定
+        super.onDestroy();
+    }
+
+    /**
+     * 设置关于我们
+     *
+     * @param info
+     */
+    @Override
+    public void setAboutUsInfo(String info) {
+        if (!TextUtils.isEmpty(info))
+            mAboutUs.setText(Html.fromHtml(info));
+        else
+            showNoMoreData();//展示没有更多数据
     }
 }
