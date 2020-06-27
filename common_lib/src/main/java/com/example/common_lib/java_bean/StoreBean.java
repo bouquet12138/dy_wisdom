@@ -1,11 +1,15 @@
 package com.example.common_lib.java_bean;
 
-public class StoreBean {
 
-    private int store_id;
+import java.io.Serializable;
+import java.util.List;
+
+public class StoreBean implements Serializable {
+
+    private Integer store_id;
     private int user_id;
     private String store_name;
-    private int head_img_id;
+    private Integer head_img_id;
     private String store_type;
     private String province;
     private String city;
@@ -20,11 +24,14 @@ public class StoreBean {
     private String product_img_ids;
     private String update_time;
 
-    public int getStore_id() {
+    private ImageBean head_img;
+    private List<ImageBean> product_imgs;
+
+    public Integer getStore_id() {
         return store_id;
     }
 
-    public void setStore_id(int store_id) {
+    public void setStore_id(Integer store_id) {
         this.store_id = store_id;
     }
 
@@ -44,11 +51,11 @@ public class StoreBean {
         this.store_name = store_name;
     }
 
-    public int getHead_img_id() {
+    public Integer getHead_img_id() {
         return head_img_id;
     }
 
-    public void setHead_img_id(int head_img_id) {
+    public void setHead_img_id(Integer head_img_id) {
         this.head_img_id = head_img_id;
     }
 
@@ -154,5 +161,21 @@ public class StoreBean {
 
     public void setUpdate_time(String update_time) {
         this.update_time = update_time;
+    }
+
+    public ImageBean getHead_img() {
+        return head_img;
+    }
+
+    public void setHead_img(ImageBean head_img) {
+        this.head_img = head_img;
+    }
+
+    public List<ImageBean> getProduct_imgs() {
+        return product_imgs;
+    }
+
+    public void setProduct_imgs(List<ImageBean> product_imgs) {
+        this.product_imgs = product_imgs;
     }
 }

@@ -16,6 +16,9 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.BarUtils;
 import com.example.base_lib.base.MVPBaseActivity;
 import com.example.common_lib.contract.ARouterContract;
+import com.example.common_lib.info.NowUserInfo;
+import com.example.common_lib.java_bean.UserBean;
+import com.example.common_lib.util.HeadImageUtil;
 import com.example.common_view.custom_view.SelectImg;
 import com.example.common_view.custom_view.ShowPasswordView;
 import com.example.common_view.editText.MyEditText;
@@ -36,6 +39,8 @@ public class LoginActivity extends MVPBaseActivity implements View.OnClickListen
     private CheckBox mAutoLand;
 
     private TextView mForgetPassword;
+
+    private TextView mTouristsLogin;//游客登陆
 
     private Button mConfirmBt;
 
@@ -68,6 +73,8 @@ public class LoginActivity extends MVPBaseActivity implements View.OnClickListen
         mRememberPW = findViewById(R.id.rememberPW);
         mAutoLand = findViewById(R.id.autoLand);
         mForgetPassword = findViewById(R.id.forgetPassword);
+        mTouristsLogin = findViewById(R.id.tourists_login);//游客登陆
+
         mConfirmBt = findViewById(R.id.confirmBt);
         mUserText = findViewById(R.id.userText);
         mPrivacyText = findViewById(R.id.privacyText);
@@ -81,11 +88,25 @@ public class LoginActivity extends MVPBaseActivity implements View.OnClickListen
      */
     private void initListener() {
 
+        MyEditText.OnTextChangedListener onTextChangedListener = () -> {
+            String account = mAccountEdit.getText();//账号
+            String password = mPasswordEdit.getText();//密码
+
+            mPresenter.getUserHead();//得到一下用户头像
+
+            if (TextUtils.isEmpty(account) || account.length() != 11 || TextUtils.isEmpty(password))
+                mConfirmBt.setEnabled(false);//不可用
+            else
+                mConfirmBt.setEnabled(true);//可用
+        };
+
+        mAccountEdit.setOnTextChangedListener(onTextChangedListener);
+        mPasswordEdit.setOnTextChangedListener(onTextChangedListener);
+
         mAutoLand.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked)
                 mRememberPW.setChecked(true);//记住密码也选中
         });
-
 
         mRememberPW.setOnCheckedChangeListener((compoundButton, b) -> {
             if (!b && mAutoLand.isChecked())//都选中
@@ -93,6 +114,8 @@ public class LoginActivity extends MVPBaseActivity implements View.OnClickListen
         });
 
         mForgetPassword.setOnClickListener(this);
+        mTouristsLogin.setOnClickListener(this);
+
         mConfirmBt.setOnClickListener(this);
         mUserText.setOnClickListener(this);
         mPrivacyText.setOnClickListener(this);
@@ -103,6 +126,9 @@ public class LoginActivity extends MVPBaseActivity implements View.OnClickListen
         int id = v.getId();
         if (id == R.id.forgetPassword) {
             startActivity(new Intent(LoginActivity.this, SelectPassActivity.class));//启动选择密码界面
+        } else if (id == R.id.tourists_login) {
+            NowUserInfo.setNowUserEmpty();//置空
+            startMainActivity();//启动主界面
         } else if (id == R.id.confirmBt) {
             if (!mRadioButton.isSelect())
                 showToast("请先同意用户隐私条例");
@@ -176,6 +202,11 @@ public class LoginActivity extends MVPBaseActivity implements View.OnClickListen
                 .setMessage(Html.fromHtml(getResources().getString(R.string.login_user_agreement)))
                 .addAction("确定", (dialog, index) -> dialog.dismiss())
                 .show();
+    }
+
+    @Override
+    public void setHeadImg(UserBean userBean) {
+        HeadImageUtil.setUserHead(userBean, LoginActivity.this, mHeadImage);
     }
 
     /**

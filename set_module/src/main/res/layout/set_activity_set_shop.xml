@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="选择支付方式"
+                android:textColor="@color/app_dark_text_color" />
+
+            <TextView
+                android:id="@+id/moneyDetailText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:gravity="right"
+                android:textSize="12dp" />
+
+        </LinearLayout>
+
+        <include layout="@layout/set_layout_pay_method"/>
+
+        <!--支付密码-->
+        <LinearLayout style="@style/personInfoBackGroundStyle">
+
+            <TextView
+                style="@style/personalInfoTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="支付密码:" />
+
+            <com.example.common_view.editText.MyEditText
+                android:id="@+id/myPayPassword"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:hint="6位数字"
+                app:inputType="number_password"
+                app:maxLength="6"></com.example.common_view.editText.MyEditText>
+
+            <com.example.common_view.custom_view.ShowPasswordView
+                android:id="@+id/passwordBt3"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+
+        </LinearLayout>
+
+
+        <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
+            android:id="@+id/confirmBt"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:text="购买"
+            android:textColor="#fff"
+            app:qmui_backgroundColor="@drawable/selector_bt_color"
+            app:qmui_borderWidth="0dp"
+            app:qmui_isRadiusAdjustBounds="true" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

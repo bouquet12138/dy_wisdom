@@ -58,7 +58,7 @@ public class FlashPresenter extends MVPBasePresenter<FlashContract.IView>
                         if (CollectionUtils.isEmpty(baseBean.getData()) || baseBean.getData().size() < NUM)
                             getView().setFootNoMoreData();//没有更多数据
                     } else {
-                        getView().showToast(baseBean.getMsg());//弹出提示信息
+                        getView().showErrorHint(baseBean.getMsg());//弹出提示信息
                         getView().showNetError();//展示网络错误
                     }
                     break;
@@ -80,11 +80,11 @@ public class FlashPresenter extends MVPBasePresenter<FlashContract.IView>
                             getView().refreshFlashList(mFlashBeans);//刷新一下
                         }
                     } else {
-                        getView().showToast(baseBean1.getMsg());//弹出提示信息
+                        getView().showErrorHint(baseBean1.getMsg());//弹出提示信息
                     }
                     break;
                 case REFRESH_NET_ERROR:
-                    getView().showToast("网络错误，刷新失败");
+                    getView().showErrorHint("网络错误，刷新失败");
                     break;
                 case REFRESH_COMPLETE:
                     getView().completeRefresh();
@@ -100,11 +100,11 @@ public class FlashPresenter extends MVPBasePresenter<FlashContract.IView>
                         } else
                             getView().setFootNoMoreData();//没有更多数据
                     } else {
-                        getView().showToast(baseBean2.getMsg());//弹出提示信息
+                        getView().showErrorHint(baseBean2.getMsg());//弹出提示信息
                     }
                     break;
                 case LOAD_MORE_NET_ERROR:
-                    getView().showToast("网络错误，加载失败");
+                    getView().showErrorHint("网络错误，加载失败");
                     break;
                 case LOAD_MORE_COMPLETE:
                     getView().completeLoadMore();//完成加载更多

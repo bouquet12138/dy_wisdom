@@ -116,6 +116,7 @@ public class RegisterPresenter extends MVPBasePresenter<RegisterContract.IView>
                     if (baseBean3.getCode() == 1) {
                         innerRegister(baseBean3.getData().getUser_id());//得到安置者的id
                     } else {
+                        getView().showErrorHint("安置者不存在");
                         getView().hideLoading();//隐藏进度框
                     }
                     break;

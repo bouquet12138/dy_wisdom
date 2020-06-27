@@ -22,7 +22,7 @@ public interface MyTeamContract {
         /**
          * 得到我团队的信息
          */
-        void getMyTeamInfo(int user_id);
+        void getMyTeamInfo(int user_id, boolean place);
 
     }
 

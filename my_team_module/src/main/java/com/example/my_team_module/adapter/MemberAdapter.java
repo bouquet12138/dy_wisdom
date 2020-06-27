@@ -55,20 +55,20 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
         String roleStr = "等级：\u3000" + bean.getRole();
 
         SpannableString spannableString = new SpannableString(roleStr);
-        int color_id = R.color.my_team_alliance_business;
+        int color_id = R.color.business;
 
         switch (bean.getRole()) {
             case UserBean.ROLE_COOPERATIVE_PARTNER:
-                color_id = R.color.my_team_cooperative_partner;
+                color_id = R.color.coop;
                 break;
             case UserBean.ROLE_AGENT:
-                color_id = R.color.my_team_agent;
+                color_id = R.color.agent;
                 break;
             case UserBean.ROLE_SERVICE:
-                color_id = R.color.my_team_service;
+                color_id = R.color.service;
                 break;
             case UserBean.ROLE_SERVICE_CENTER:
-                color_id = R.color.my_team_service_center;
+                color_id = R.color.service_center;
                 break;
         }
 

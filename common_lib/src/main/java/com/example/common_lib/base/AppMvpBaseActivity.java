@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.BarUtils;
+import com.blankj.utilcode.util.NetworkUtils;
 import com.example.base_lib.base.MVPBaseActivity;
 import com.example.common_lib.R;
 import com.qmuiteam.qmui.widget.dialog.QMUIDialog;
@@ -84,14 +85,17 @@ public abstract class AppMvpBaseActivity extends MVPBaseActivity implements IApp
         mTitleText.setText(mTitleName);
         mRightText.setText(mRightTextName);
 
-        mNetErrorView = getLayoutInflater().inflate(R.layout.common_layout_net_error,
-                null, false);//网络错误
-        mNoMoreDataView = getLayoutInflater().inflate(R.layout.common_layout_no_more,
-                null, false);//没有更多数据
+        mNetErrorView = findViewById(R.id.netErrorLayout);//网络错误
+        mNoMoreDataView = findViewById(R.id.noMoreData);//没有更多数据
         mNormalView = getLayoutInflater().inflate(mNormalViewId,
                 null, false);//正常view
 
+        mNetErrorView.setVisibility(View.GONE);//不可见
+        mNoMoreDataView.setVisibility(View.GONE);
+        mFrameLayout.addView(mNormalView);//添加正确的布局
+
         mRefreshBt = mNetErrorView.findViewById(R.id.refresh);//刷新按钮
+        mSmartRefreshLayout.setEnablePureScrollMode(true);//只是滑动
     }
 
     private void initBaseListener() {
@@ -144,15 +148,9 @@ public abstract class AppMvpBaseActivity extends MVPBaseActivity implements IApp
      */
     @Override
     public void showNetError() {
-
-        if (mFrameLayout.getChildCount() == 0) {
-            mFrameLayout.addView(mNetErrorView);//网络错误布局
-        } else if (mFrameLayout.getChildAt(0) != mNetErrorView) {
-            mFrameLayout.removeAllViews();//移除它所有的布局
-            mFrameLayout.addView(mNetErrorView);//网络错误布局
-        } else {
-            Log.e(TAG, "showNetError: ");
-        }
+        mNetErrorView.setVisibility(View.VISIBLE);//可见
+        mSmartRefreshLayout.setVisibility(View.GONE);
+        mNoMoreDataView.setVisibility(View.GONE);//不可见
     }
 
     /**
@@ -160,14 +158,9 @@ public abstract class AppMvpBaseActivity extends MVPBaseActivity implements IApp
      */
     @Override
     public void showNoMoreData() {
-        if (mFrameLayout.getChildCount() == 0) {
-            mFrameLayout.addView(mNoMoreDataView);//没有更多数据
-        } else if (mFrameLayout.getChildAt(0) != mNoMoreDataView) {
-            mFrameLayout.removeAllViews();//移除它所有的布局
-            mFrameLayout.addView(mNoMoreDataView);//没有更多数据 
-        } else {
-            Log.e(TAG, "showNoMoreData: ");
-        }
+        mNetErrorView.setVisibility(View.GONE);//不可见
+        mSmartRefreshLayout.setVisibility(View.GONE);
+        mNoMoreDataView.setVisibility(View.VISIBLE);//可见
     }
 
     /**
@@ -176,14 +169,9 @@ public abstract class AppMvpBaseActivity extends MVPBaseActivity implements IApp
     @Override
     public void showNormalView() {
 
-        if (mFrameLayout.getChildCount() == 0) {
-            mFrameLayout.addView(mNormalView);//网络错误布局
-        } else if (mFrameLayout.getChildAt(0) != mNormalView) {
-            mFrameLayout.removeAllViews();//移除它所有的布局
-            mFrameLayout.addView(mNormalView);//网络错误布局
-        } else {
-            Log.e(TAG, "showNormalView: ");
-        }
+        mNetErrorView.setVisibility(View.GONE);//不可见
+        mNoMoreDataView.setVisibility(View.GONE);//不可见
+        mSmartRefreshLayout.setVisibility(View.VISIBLE);//可见
     }
 
     private static final String TAG = "AppMvpBaseActivity";
@@ -199,6 +187,17 @@ public abstract class AppMvpBaseActivity extends MVPBaseActivity implements IApp
         } else {
             mRightText.setVisibility(View.VISIBLE);//不可见
         }
+    }
+
+    /**
+     * 网络连上
+     *
+     * @param type
+     */
+    @Override
+    public void onConnected(NetworkUtils.NetworkType type) {
+        super.onConnected(type);
+        onRefresh();//刷新一下
     }
 
     /**

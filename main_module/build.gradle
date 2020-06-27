@@ -2,6 +2,13 @@ apply plugin: 'com.android.application'
 
 android {
 
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to checkforerrorsinrelease builds,
+        // but continue the build even whenerrorsarefound:
+        abortOnError false
+    }
+
     //applicationId "com.example.massmanage"
 
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -10,7 +17,7 @@ android {
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode 1
-        versionName "1.0.1"
+        versionName "1.1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         multiDexEnabled true
@@ -45,10 +52,10 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    /*   implementation 'com.android.support:appcompat-v7:28.0.0-alpha1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'*/
-
-    /*implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    /*
+    implementation 'com.android.support:appcompat-v7:28.0.0-alpha1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     implementation 'com.android.support:support-v4:28.0.0'*/
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
@@ -68,5 +75,12 @@ dependencies {
         implementation project(':flash_module')
         implementation project(':my_team_module')
         implementation project(':sale_share_module')
+        implementation project(':spread_module')
+        implementation project(':redeem_module')
+        implementation project(':bonus_module')
+        implementation project(':withdraw_module')
+        implementation project(':set_module')
+        implementation project(':shop_module')
+        implementation project(':cityservices')
     }
 }

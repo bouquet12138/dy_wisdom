@@ -19,9 +19,28 @@ public class ARouterContract {
 
     public static final String MY_TEAM_MY_TEAM = "/my_team/my_team";
 
+
     public static final String SALE_SHARE_SALE_SHARE = "/sale_share/sale_share";
+    public static final String SALE_SHARE_TEAM = "/sale_share/team";
+    public static final String SALE_SHARE_TRANSFER = "/sale_share/transfer";
+    public static final String SALE_SHARE_CONVERSION = "/sale_share/conversion";
+
+    public static final String BONUS_BONUS = "/bonus/bonus";
+
+    public static final String REDEEM_REDEEM = "/redeem/redeem";
+    public static final String REDEEM_PAY = "/redeem/pay";
 
     public static final String SPREAD_SPREAD = "/spread/spread";
 
+    public static final String WITHDRAW_WITHDRAW = "/withdraw/withdraw";
 
+    public static final String SET_SET_SHOP = "/set/set_shop";
+    public static final String SET_CAN_GET_REWARD = "/set/can_get_reward";
+
+    public static final String CITY_SERVICES = "/city/services";
+
+    public static final String WITHDRAW_RECORD = "/withdraw/record";
+
+    public static final String SHOP_SHOP = "/shop/shop";
+    public static final String SHOP_ORDER = "/shop/order";
 }

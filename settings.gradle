@@ -1,3 +1,4 @@
-include ':main_module', ':common_lib', ':base_lib', ':common_view', ':ui', ':login_module', ':flash_module', ':sale_share_module',
-        ':my_team_module', ':spread_module',':redeem_module'
-rootProject.name='WisdomConsumption'
+include ':main_module', ':common_lib', ':base_lib', ':common_view', ':ui', ':login_module', ':flash_module', ':shop_module',
+        ':sale_share_module', ':withdraw_module', ':set_module',
+        ':my_team_module', ':spread_module', ':redeem_module', 'bonus_module','cityservices'
+rootProject.name = 'WisdomConsumption'

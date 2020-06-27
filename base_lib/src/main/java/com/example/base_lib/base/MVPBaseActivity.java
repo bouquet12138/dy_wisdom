@@ -43,6 +43,9 @@ public class MVPBaseActivity extends AppCompatActivity implements IMVPBaseView, 
      */
     @Override
     public void showLoading(String msg) {
+        if (mLoadingDialog != null) {
+            mLoadingDialog.dismiss();
+        }
         mLoadingDialog = new QMUITipDialog.Builder(getContext())
                 .setIconType(QMUITipDialog.Builder.ICON_TYPE_LOADING)
                 .setTipWord(msg)
@@ -92,6 +95,9 @@ public class MVPBaseActivity extends AppCompatActivity implements IMVPBaseView, 
      */
     @Override
     public void showErrorHint(String hintStr) {
+        if (mErrorDialog != null)
+            mErrorDialog.dismiss();//销毁
+
         mErrorDialog = new QMUITipDialog.Builder(getContext())
                 .setIconType(QMUITipDialog.Builder.ICON_TYPE_FAIL)
                 .setTipWord(hintStr)
@@ -113,6 +119,8 @@ public class MVPBaseActivity extends AppCompatActivity implements IMVPBaseView, 
      */
     @Override
     public void showSuccessHint(String hintStr) {
+        if (mSuccessDialog != null)
+            mSuccessDialog.dismiss();//销毁
         mSuccessDialog = new QMUITipDialog.Builder(getContext())
                 .setIconType(QMUITipDialog.Builder.ICON_TYPE_SUCCESS)
                 .setTipWord(hintStr)

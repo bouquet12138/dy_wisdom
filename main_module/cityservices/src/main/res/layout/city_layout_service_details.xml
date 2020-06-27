@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!--商店名称-->
+            <TextView
+                android:id="@+id/storeName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/app_dark_text_color"
+                android:textSize="22dp" />
+
+            <com.qmuiteam.qmui.widget.QMUIRadiusImageView
+                android:id="@+id/headImg"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/image_loading"
+                app:qmui_border_width="0dp"
+                app:qmui_corner_radius="10dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/locationImg"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/city_location" />
+
+            <!--详细地址-->
+            <TextView
+                android:id="@+id/detailedAddress"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="1"
+                android:textColor="@color/app_dark_text_color" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/phoneView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingTop="20dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/city_phone" />
+
+            <!--电话-->
+            <TextView
+                android:id="@+id/phoneText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="1"
+                android:textColor="@color/app_dark_text_color" />
+
+        </LinearLayout>
+
+
+        <!--营业时间-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/city_time" />
+
+            <!--详细地址-->
+            <TextView
+                android:id="@+id/businessTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="1"
+                android:textColor="@color/app_dark_text_color" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="门店简介"
+            android:textColor="@color/app_dark_text_color"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/storeDescribe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="经营展示"
+            android:textColor="@color/app_dark_text_color"
+            android:textSize="20dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

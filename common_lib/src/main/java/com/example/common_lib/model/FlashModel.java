@@ -6,6 +6,7 @@ import android.util.Log;
 import com.example.base_lib.listener.OnGetInfoListener;
 import com.example.common_lib.info.ServerInfo;
 import com.example.common_lib.java_bean.BaseBean;
+import com.example.common_lib.java_bean.BonusRecordBean;
 import com.example.common_lib.java_bean.FlashBean;
 import com.example.common_lib.util.OkHttpUtil;
 
@@ -35,7 +36,8 @@ public class FlashModel {
      * 初始化商店信息
      */
     public void initFlashInfo(OnGetInfoListener<BaseBean<List<FlashBean>>> listener) {
-        getFlashList("init_flash", "", listener);
+        ModelListUtil<FlashBean> modelListUtil = new ModelListUtil<>();
+        modelListUtil.getList("init_flash", "", listener, FlashBean.class);
     }
 
     /**
@@ -53,7 +55,8 @@ public class FlashModel {
             e.printStackTrace();
         }
 
-        getFlashList("refresh_flash", jsonObject.toString(), listener);
+        ModelListUtil<FlashBean> modelListUtil = new ModelListUtil<>();
+        modelListUtil.getList("refresh_flash", jsonObject.toString(), listener, FlashBean.class);
     }
 
     /**
@@ -70,41 +73,9 @@ public class FlashModel {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        ModelListUtil<FlashBean> modelListUtil = new ModelListUtil<>();
+        modelListUtil.getList("load_more_flash", jsonObject.toString(), listener, FlashBean.class);
 
-        getFlashList("load_more_flash", jsonObject.toString(), listener);
-    }
-
-
-    /**
-     * 得到快讯列表
-     */
-    public void getFlashList(String url, String json, OnGetInfoListener<BaseBean<List<FlashBean>>> listener) {
-
-        Log.d(TAG, "getFlashList: url " + url + " json " + json);
-
-        OkHttpUtil.postJson(ServerInfo.getServerAddress(url), json, new okhttp3.Callback() {
-
-            @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                listener.onComplete();
-                String responseData = response.body().string();
-                Log.d(TAG, "onResponse: " + responseData);//设置响应信息
-                BaseBean<List<FlashBean>> baseBean = BaseBean.analysisBaseBeanList(responseData, FlashBean.class);
-
-                if (baseBean != null)
-                    listener.onResult(baseBean);//传递出去
-                else
-                    listener.onNetError();
-
-            }
-
-            @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                Log.d(TAG, "onFailure: ");
-                listener.onComplete();
-                listener.onNetError();//网络错误
-            }
-        });
     }
 
     public void addFlashReadingVolume(int flash_id, OnGetInfoListener<BaseBean> listener) {

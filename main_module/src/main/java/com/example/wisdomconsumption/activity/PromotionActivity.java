@@ -36,7 +36,7 @@ public class PromotionActivity extends AppMvpBaseActivity implements AppContract
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         showNormalView();//展示正常view
-        mSmartRefreshLayout.setBackgroundColor(getResources().getColor(R.color.app_title_color));
+        mSmartRefreshLayout.setBackgroundColor(getResources().getColor(R.color.app_theme_color));
         initView();
         setSubmitEnable(false);
         mPresenter.attachView(this);//绑定一下view
@@ -58,9 +58,11 @@ public class PromotionActivity extends AppMvpBaseActivity implements AppContract
         return R.layout.main_layout_promotion;
     }
 
+
+
     @Override
     protected void onRefresh() {
-
+        mPresenter.getAppInfo();//得到
     }
 
     @Override
@@ -117,6 +119,6 @@ public class PromotionActivity extends AppMvpBaseActivity implements AppContract
         Log.d(TAG, "setAppInfo: " + appBean);
         if (appBean != null && appBean.getApp_url() != null)
             Glide.with(this).load(getQrCode(SizeUtils.dp2px(300),
-                    SizeUtils.dp2px(300), ServerInfo.getServerAddress(appBean.getApp_url()))).into(mAppImage);
+                    SizeUtils.dp2px(300), ServerInfo.getAppDownloadAddress(appBean.getApp_url()))).into(mAppImage);
     }
 }

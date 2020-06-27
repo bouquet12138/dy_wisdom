@@ -30,9 +30,11 @@ public class OptionPresenter extends MVPBasePresenter<OptionContract.IView>
             switch (msg.what) {
                 case SUCCESS:
                     BaseBean baseBean = (BaseBean) msg.obj;
-                    getView().showToast(baseBean.getMsg());//展示提示信息
                     if (baseBean.getCode() == 1) {
+                        getView().showToast(baseBean.getMsg());//展示提示信息
                         getView().finishActivity();//销毁活动
+                    } else {
+                        getView().showErrorHint(baseBean.getMsg());//提示信息
                     }
                     break;
                 case NET_ERROR:
@@ -50,7 +52,7 @@ public class OptionPresenter extends MVPBasePresenter<OptionContract.IView>
 
         if (!isViewAttached())
             return;
-        if (!NetworkUtils.isAvailable()) {
+        if (!NetworkUtils.isConnected()) {
             getView().showErrorHint("网络错误");
             return;
         }

@@ -3,8 +3,8 @@
     package="com.example.my_team_module">
 
     <application>
-        <activity android:name=".activity.MyTeamActivity">
-        </activity>
+        <activity android:name=".activity.ShowTeamActivity" />
+        <activity android:name=".activity.MyTeamActivity" />
     </application>
 
 </manifest>

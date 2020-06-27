@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <LinearLayout style="@style/personInfoBackGroundStyle">
+
+        <TextView
+            style="@style/personalInfoTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="销售积分:&#12288;" />
+
+        <!--提现金额-->
+        <com.example.common_view.editText.MyEditText
+            android:id="@+id/amountNum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:inputType="number"></com.example.common_view.editText.MyEditText>
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/personInfoBackGroundStyle">
+
+        <TextView
+            style="@style/personalInfoTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="支付密码:&#12288;" />
+
+        <com.example.common_view.editText.MyEditText
+            android:id="@+id/password"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            app:inputType="number_password"
+            app:maxLength="6" />
+
+        <com.example.common_view.custom_view.ShowPasswordView
+            android:id="@+id/passwordBt"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+
+    </LinearLayout>
+    <!--
+        <LinearLayout style="@style/personInfoBackGroundStyle">
+
+            <TextView
+                style="@style/personalInfoTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="备注:&#12288;&#12288;&#12288;" />
+
+            <com.example.common_view.editText.MyEditText
+                android:id="@+id/remark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </com.example.common_view.editText.MyEditText>
+
+        </LinearLayout>-->
+
+    <!--
+        <LinearLayout style="@style/personInfoBackGroundStyle">
+
+            <TextView
+                style="@style/personalInfoTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="目标用户:&#12288;" />
+
+            <com.example.common_view.editText.MyEditText
+                android:id="@+id/targetUserText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hint="目标用户手机号"
+                app:maxLines="1"></com.example.common_view.editText.MyEditText>
+
+        </LinearLayout>
+
+        &lt;!&ndash;用户姓名&ndash;&gt;
+        <TextView
+            android:id="@+id/userNameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />-->
+
+    <!--确定按钮-->
+
+
+    <LinearLayout style="@style/personInfoBackGroundStyle">
+
+        <TextView
+            style="@style/personalInfoTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="备注:&#12288;&#12288;&#12288;" />
+
+        <com.example.common_view.editText.MyEditText
+            android:id="@+id/remark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </com.example.common_view.editText.MyEditText>
+
+    </LinearLayout>
+
+    <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
+        android:id="@+id/confirmBt"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:enabled="false"
+        android:text="确认转换"
+        android:textColor="#fff"
+        app:qmui_backgroundColor="@drawable/selector_bt_color"
+        app:qmui_borderWidth="0dp"
+        app:qmui_isRadiusAdjustBounds="true" />
+
+
+</LinearLayout>

@@ -8,14 +8,16 @@ public class AppBean {
 
     private int app_id;
     private String insert_time;
-    private int app_size;
+    private long app_size;//app的大小
+
     private String update_status;
+
     private String app_md5;
     private String app_name;
     private String app_icon;
     private String app_url;
     private String app_describe;
-    private int version_code;
+    private Integer version_code;
     private String version_name;
 
     public int getApp_id() {
@@ -34,11 +36,11 @@ public class AppBean {
         this.insert_time = insert_time;
     }
 
-    public int getApp_size() {
+    public long getApp_size() {
         return app_size;
     }
 
-    public void setApp_size(int app_size) {
+    public void setApp_size(long app_size) {
         this.app_size = app_size;
     }
 
@@ -90,11 +92,11 @@ public class AppBean {
         this.app_describe = app_describe;
     }
 
-    public int getVersion_code() {
+    public Integer getVersion_code() {
         return version_code;
     }
 
-    public void setVersion_code(int version_code) {
+    public void setVersion_code(Integer version_code) {
         this.version_code = version_code;
     }
 

@@ -62,7 +62,6 @@
             android:layout_height="60dp"
             android:background="@drawable/login_selector_rect"
             android:padding="10dp"
-
             android:src="@drawable/integral_pay" />
 
         <TextView

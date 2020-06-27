@@ -43,7 +43,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-//TODO:跳转还没处理
 @Route(path = ARouterContract.LOGIN_INFO)
 public class InformationActivity extends SelectImagePermissionActivity
         implements View.OnClickListener, InformationContract.IView {
@@ -238,6 +237,7 @@ public class InformationActivity extends SelectImagePermissionActivity
         else
             mModifyUserBean.setSex("女");
         mModifyUserBean.setBirthday(mBirthdayText.getText().toString());//生日
+        mModifyUserBean.setDetail_address(mDetailAddressText.getText());//详细地址
         mModifyUserBean.setId_card(mIdCard.getText());//身份证号
         mModifyUserBean.setBank_num(mBandCard.getText());//银行卡号
         return mModifyUserBean;

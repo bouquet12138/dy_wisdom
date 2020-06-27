@@ -25,6 +25,7 @@ import com.example.login_module.presenter.RegisterPresenter;
 @Route(path = ARouterContract.LOGIN_REGISTER)
 public class RegisterActivity extends AppMvpBaseActivity implements View.OnClickListener, RegisterContract.IView {
 
+    //private long mLastDownTime;
 
     private MyEditText mNameText;
     private MyEditText mTelPhone;

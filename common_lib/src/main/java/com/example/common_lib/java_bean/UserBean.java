@@ -20,7 +20,7 @@ public class UserBean implements Serializable {
     public static final String ENABLED_YES = "1";
 
 
-    private int user_id;
+    private Integer user_id;
     private String is_merchant;
     private String id_card;
     private Integer recommend_user_id;
@@ -37,12 +37,10 @@ public class UserBean implements Serializable {
     private String role;
     private String enabled;
     private int integral;
-
     private int sale_share_integral;
     private int redeem_integral;
     private int bonus_integral;
     private int spread_integral;
-
     private int profit_merchant;
     private int profit_frozen_merchant;
     private String uuid;
@@ -53,20 +51,18 @@ public class UserBean implements Serializable {
     private String login_time;
     private String bank_num;
 
-    private String new_pay_pass;
-    private String new_login_pass;
+    private String recommend_user_pay_pass;//推荐用户的支付密码
 
     private int child_num;//孩子数
 
     //对应的头像信息
     private ImageBean head_img;
 
-
-    public int getUser_id() {
+    public Integer getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(int user_id) {
+    public void setUser_id(Integer user_id) {
         this.user_id = user_id;
     }
 
@@ -302,20 +298,12 @@ public class UserBean implements Serializable {
         this.bank_num = bank_num;
     }
 
-    public String getNew_pay_pass() {
-        return new_pay_pass;
+    public String getRecommend_user_pay_pass() {
+        return recommend_user_pay_pass;
     }
 
-    public void setNew_pay_pass(String new_pay_pass) {
-        this.new_pay_pass = new_pay_pass;
-    }
-
-    public String getNew_login_pass() {
-        return new_login_pass;
-    }
-
-    public void setNew_login_pass(String new_login_pass) {
-        this.new_login_pass = new_login_pass;
+    public void setRecommend_user_pay_pass(String recommend_user_pay_pass) {
+        this.recommend_user_pay_pass = recommend_user_pay_pass;
     }
 
     public int getChild_num() {
@@ -354,4 +342,5 @@ public class UserBean implements Serializable {
         this.head_img = modifyUserBean.getHead_img();
 
     }
+
 }

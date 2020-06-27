@@ -49,15 +49,15 @@ public class DateUtil {
             if (subYear == 0 && subMonth == 0 && Math.abs(subDay) <= 2) {
 
                 if (subDay == 0)
-                    date += "今天";
+                    date += "今天 ";
                 else if (subDay == 1)
-                    date += "昨天";
+                    date += "昨天 ";
                 else if (subDay == -1)
-                    date += "明天";
+                    date += "明天 ";
                 else if (subDay == -2)
-                    date += "后天";
+                    date += "后天 ";
                 else
-                    date += "前天";
+                    date += "前天 ";
             }
 
             if (subYear != 0) {

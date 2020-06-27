@@ -18,7 +18,7 @@
 
     <!--标题文本样式-->
     <style name="toolBarText">
-        <item name="android:textSize">13dp</item>
+        <item name="android:textSize">15dp</item>
         <item name="android:background">@color/app_title_color</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">10dp</item>
@@ -48,7 +48,7 @@
         <item name="android:layout_marginRight">3dp</item>
         <item name="android:padding">9dp</item>
         <item name="android:textColor">@drawable/selector_text</item>
-        <item name="android:textSize">13dp</item>
+        <item name="android:textSize">15dp</item>
     </style>
 
     <!--悬浮按钮的样式-->

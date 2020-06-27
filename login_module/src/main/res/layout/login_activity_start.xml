@@ -20,13 +20,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="50dp"
-        android:text="山东金德鑫鲜物联网科技有限公司" />
+        android:text="山东德蕴泰锋网络科技有限公司" />
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        android:src="@drawable/login_start_back"
-        android:visibility="gone" />
+
 
 </RelativeLayout>

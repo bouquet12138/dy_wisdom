@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.qmuiteam.qmui.layout.QMUILinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/idText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="编号:&#12288;&#12288;&#12288;&#12288;" />
+
+    <TextView
+        android:id="@+id/saleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="可领销售积分:&#12288;&#12288;" />
+
+
+    <TextView
+        android:id="@+id/redeemText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="可领兑换积分:&#12288;&#12288;" />
+
+    <TextView
+        android:id="@+id/insertTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="创建时间：&#12288;" />
+
+
+</com.qmuiteam.qmui.layout.QMUILinearLayout>

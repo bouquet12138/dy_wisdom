@@ -1,6 +1,5 @@
 package com.example.common_lib.java_bean;
 
-
 import java.io.Serializable;
 import java.util.List;
 

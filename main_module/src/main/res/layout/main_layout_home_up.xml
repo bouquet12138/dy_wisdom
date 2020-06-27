@@ -5,7 +5,7 @@
     android:layout_marginTop="15dp">
     <!--购物商城-->
     <LinearLayout
-        android:id="@+id/myShop"
+        android:id="@+id/onlineShop"
         style="@style/main_home_bt">
 
         <ImageView

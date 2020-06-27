@@ -4,6 +4,7 @@ import android.content.Context;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.widget.EditText;
@@ -48,11 +49,14 @@ public class ShowPasswordView extends LinearLayout {
         mEditText = editText;
     }
 
+    private static final String TAG = "ShowPasswordView";
+
     private void initListener() {
         mImageView.setOnTouchListener((v, event) -> {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 mImageView.setImageResource(R.drawable.open);
                 if (mEditText != null) {
+                    Log.d(TAG, "initListener: 打开 ");
                     mEditText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                     mEditText.setSelection(mEditText.getText().length());
                 }

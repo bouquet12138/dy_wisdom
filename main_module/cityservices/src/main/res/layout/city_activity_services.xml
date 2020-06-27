@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_back_color">
+
+    <!--标题栏-->
+    <RelativeLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/toolBarText"
+            android:text="城市服务" />
+
+        <ImageView
+            android:id="@+id/backButton"
+            style="@style/back_bt" />
+
+    </RelativeLayout>
+
+    <include layout="@layout/city_layout_services"/>
+
+
+</RelativeLayout>
+

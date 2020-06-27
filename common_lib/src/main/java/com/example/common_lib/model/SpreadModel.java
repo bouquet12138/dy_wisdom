@@ -5,6 +5,7 @@ import android.util.Log;
 import com.example.base_lib.listener.OnGetInfoListener;
 import com.example.common_lib.info.ServerInfo;
 import com.example.common_lib.java_bean.BaseBean;
+import com.example.common_lib.java_bean.SetRecordBean;
 import com.example.common_lib.java_bean.SpreadRecordBean;
 import com.example.common_lib.util.OkHttpUtil;
 
@@ -39,7 +40,8 @@ public class SpreadModel {
             e.printStackTrace();
         }
 
-        getSpreadRecord("init_spread_record", jsonObject.toString(), listener);//得到销售记录
+        ModelListUtil<SpreadRecordBean> modelListUtil = new ModelListUtil<>();
+        modelListUtil.getList("init_spread_record", jsonObject.toString(), listener, SpreadRecordBean.class);
     }
 
     /**
@@ -61,33 +63,8 @@ public class SpreadModel {
         }
         //init_spread_record
 
-        getSpreadRecord("load_more_spread_record", jsonObject.toString(), listener);//得到销售记录
-    }
-
-    private void getSpreadRecord(String url, String json, OnGetInfoListener<BaseBean<List<SpreadRecordBean>>> listener) {
-        OkHttpUtil.postJson(ServerInfo.getServerAddress(url), json, new okhttp3.Callback() {
-
-            @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                listener.onComplete();
-                String responseData = response.body().string();
-                Log.d(TAG, "onResponse: " + responseData);//设置响应信息
-                BaseBean<List<SpreadRecordBean>> baseBean = BaseBean.analysisBaseBeanList(responseData, SpreadRecordBean.class);
-
-                if (baseBean != null)
-                    listener.onResult(baseBean);//传递出去
-                else
-                    listener.onNetError();
-
-            }
-
-            @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                Log.d(TAG, "onFailure: ");
-                listener.onComplete();
-                listener.onNetError();//网络错误
-            }
-        });
+        ModelListUtil<SpreadRecordBean> modelListUtil = new ModelListUtil<>();
+        modelListUtil.getList("load_more_spread_record", jsonObject.toString(), listener, SpreadRecordBean.class);
     }
 
 }

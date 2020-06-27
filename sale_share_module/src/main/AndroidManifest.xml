@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.integer_module">
+    package="com.example.sale_integer_module">
 
     <application>
-        <activity android:name="com.example.integer_module.activity.RedeemActivity"></activity>
+        <activity
+            android:name=".activity.ConversionActivity"
+            android:launchMode="singleTop"></activity>
+        <activity
+            android:name=".activity.TeamSaleShareActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".activity.TransferActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".activity.SaleShareActivity"
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>

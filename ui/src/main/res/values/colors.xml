@@ -3,7 +3,7 @@
 <resources>
     <color name="colorPrimary">#4597f9</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#4594fa</color>
 
     <color name="app_theme_light_color">#62A2FF</color>
     <color name="app_theme_color">#4594fa</color>
@@ -23,6 +23,7 @@
     <color name="app_line_color">#eee</color>
     <!--app背景的颜色-->
     <color name="app_back_color">#eee</color>
+    <color name="app_dark_back_color">#ccc</color>
     <color name="app_light_back_color">#fafafa</color>
 
     <color name="dividerColor">#e4e4e4</color>
@@ -43,10 +44,11 @@
     <color name="button_text_color">#FFFFFF</color>
 
 
-    <color name="good">#ff58d1ff</color>
-    <color name="well">#ffb7db68</color>
-    <color name="pass">#FFfdcb2e</color>
-    <color name="don_t_pass">#FFf5668b</color>
+    <color name="business">#FFf5668b</color><!--加盟商-->
+    <color name="coop">#4CAF50</color>
+    <color name="agent">#DF4E44</color>
+    <color name="service">#B44FC9</color>
+    <color name="service_center">#E9A56F</color>
 
 </resources>
 

@@ -12,100 +12,143 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:padding="10dp"
             android:text="我的订单"
-            android:textSize="12dp"
-            android:textColor="@color/app_dark_text_color" />
+            android:textColor="@color/app_dark_text_color"
+            android:textSize="12dp" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/allRecord"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:gravity="right"
+            android:padding="10dp"
             android:text="查看全部订单>"
-            android:textSize="10dp"
-            android:textColor="@color/app_light_text_color" />
+            android:textColor="@color/app_light_text_color"
+            android:textSize="10dp" />
 
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/app_line_color"
-        />
+        android:background="@color/app_line_color" />
 
     <LinearLayout
-        android:padding="5dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="5dp">
 
         <LinearLayout
+            android:id="@+id/waitGroup"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:padding="5dp">
+            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="30dp"
-                android:padding="1dp"
-                android:layout_height="30dp"
-                android:src="@drawable/main_to_send_good" />
+
+            <RelativeLayout
+                android:layout_width="45dp"
+                android:layout_height="45dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerInParent="true"
+                    android:padding="1dp"
+                    android:src="@drawable/main_to_send_good" />
+
+                <TextView
+                    android:id="@+id/waitNum"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/main_shape_circle"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textColor="@color/business"
+                    android:textSize="8dp"
+                    android:visibility="invisible" />
+            </RelativeLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:text="待发货"
                 android:textSize="12dp" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/hadGroup"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:padding="5dp">
+            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/main_has_send_good" />
+            <RelativeLayout
+                android:layout_width="45dp"
+                android:layout_height="45dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/main_has_send_good" />
+
+                <TextView
+                    android:id="@+id/hadNum"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/main_shape_circle"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textColor="@color/business"
+                    android:textSize="8dp"
+                    android:visibility="invisible" />
+
+            </RelativeLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:text="已发货"
                 android:textSize="12dp" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/hasComplete"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:padding="5dp">
+            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:padding="1dp"
-                android:src="@drawable/main_complete" />
+            <RelativeLayout
+                android:layout_width="45dp"
+                android:layout_height="45dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerInParent="true"
+                    android:padding="1dp"
+                    android:src="@drawable/main_complete" />
+            </RelativeLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:text="已完成"
                 android:textSize="12dp" />
 

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.set_module">
+
+    <application>
+        <activity
+            android:name=".activity.CanGetRewardActivity"
+            android:launchMode="singleTop"></activity>
+        <activity
+            android:name=".activity.SetShopActivity"
+            android:launchMode="singleTop"></activity>
+    </application>
+
+</manifest>

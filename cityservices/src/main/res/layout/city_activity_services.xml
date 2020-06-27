@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_back_color"
+    android:orientation="vertical">
+
+    <!--标题栏-->
+    <RelativeLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/app_title_color">
+
+        <TextView
+            style="@style/toolBarText"
+            android:layout_marginLeft="45dp"
+            android:text="城市服务" />
+
+
+        <ImageView
+            android:id="@+id/backButton"
+            style="@style/back_bt" />
+
+    </RelativeLayout>
+
+
+    <!--搜索-->
+    <LinearLayout
+        android:id="@+id/headViewGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/cityText"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:padding="10dp"
+                android:text="点击选择城市"
+                android:textSize="14dp" />
+
+            <com.example.common_view.editText.MyEditText
+                android:id="@+id/storeName"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_marginLeft="5dp"
+                app:hint="店铺名称" />
+
+
+        </LinearLayout>
+
+        <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
+            android:id="@+id/searchBt"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:padding="5dp"
+            android:text="搜索"
+            android:textColor="#fff"
+            app:qmui_backgroundColor="@drawable/selector_bt_color"
+            app:qmui_borderWidth="0dp"
+            app:qmui_isRadiusAdjustBounds="true" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
+

@@ -1,13 +1,17 @@
 package com.example.common_lib.java_bean;
 
+
 public class WithdrawBean {
+
+    public static final String SALE_WITHDRAW = "销售积分提现";
+    public static final String MERCHANT_WITHDRAW = "商家提现";
 
     private int withdraw_id;
     private int withdraw_amount;
     private String insert_time;
-    private int user_id;
-    private int sale_share_id;
-    private int profit_merchant_id;
+    private Integer user_id;
+    private Integer sale_share_id;
+    private Integer profit_merchant_id;
     private String withdraw_remark;
     private String bank_card;
     private String ali_pay;
@@ -16,6 +20,24 @@ public class WithdrawBean {
     private int remain_amount;
     private int is_process;
     private String update_time;
+
+    private String withdraw_type;//提现类型
+    private String pay_pass;
+
+    /**
+     * userBean.getUser_id(), amount, password, remark, mWithdrawType
+     * @return
+     */
+    public WithdrawBean( Integer user_id, int withdraw_amount, String pay_pass,String withdraw_remark, String withdraw_type) {
+        this.withdraw_amount = withdraw_amount;
+        this.user_id = user_id;
+        this.withdraw_remark = withdraw_remark;
+        this.withdraw_type = withdraw_type;
+        this.pay_pass = pay_pass;
+    }
+
+
+
 
     public int getWithdraw_id() {
         return withdraw_id;
@@ -41,27 +63,27 @@ public class WithdrawBean {
         this.insert_time = insert_time;
     }
 
-    public int getUser_id() {
+    public Integer getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(int user_id) {
+    public void setUser_id(Integer user_id) {
         this.user_id = user_id;
     }
 
-    public int getSale_share_id() {
+    public Integer getSale_share_id() {
         return sale_share_id;
     }
 
-    public void setSale_share_id(int sale_share_id) {
+    public void setSale_share_id(Integer sale_share_id) {
         this.sale_share_id = sale_share_id;
     }
 
-    public int getProfit_merchant_id() {
+    public Integer getProfit_merchant_id() {
         return profit_merchant_id;
     }
 
-    public void setProfit_merchant_id(int profit_merchant_id) {
+    public void setProfit_merchant_id(Integer profit_merchant_id) {
         this.profit_merchant_id = profit_merchant_id;
     }
 
@@ -119,5 +141,21 @@ public class WithdrawBean {
 
     public void setUpdate_time(String update_time) {
         this.update_time = update_time;
+    }
+
+    public String getWithdraw_type() {
+        return withdraw_type;
+    }
+
+    public void setWithdraw_type(String withdraw_type) {
+        this.withdraw_type = withdraw_type;
+    }
+
+    public String getPay_pass() {
+        return pay_pass;
+    }
+
+    public void setPay_pass(String pay_pass) {
+        this.pay_pass = pay_pass;
     }
 }

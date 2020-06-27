@@ -14,8 +14,10 @@ public class HeadImageUtil {
 
     public static void setUserHead(UserBean bean, Context context, ImageView imageView) {
 
-        if (bean == null)
+        if (bean == null) {
+            Glide.with(context).load(R.drawable.man_head).into(imageView);
             return;
+        }
 
         if (bean.getHead_img() == null || TextUtils.isEmpty(bean.getHead_img().getImage_url())) {
 

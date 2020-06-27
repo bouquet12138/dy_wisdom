@@ -29,6 +29,7 @@ import java.util.List;
 @Route(path = ARouterContract.MY_TEAM_MY_TEAM)
 public class MyTeamActivity extends AppMvpBaseActivity implements MyTeamContract.IView {
 
+
     private MyTeamPresenter mPresenter = new MyTeamPresenter();
     private RecyclerView mRecyclerView;
     private MemberAdapter mMemberAdapter;
@@ -38,6 +39,9 @@ public class MyTeamActivity extends AppMvpBaseActivity implements MyTeamContract
 
     @Autowired(name = "user_name")
     protected String mUserName;//用户名称
+
+    @Autowired(name = "is_place")
+    protected boolean mIsPlace;//是否是安置
 
     private List<UserBean> mUserBeans = new ArrayList<>();
 
@@ -63,15 +67,19 @@ public class MyTeamActivity extends AppMvpBaseActivity implements MyTeamContract
 
         ARouter.getInstance().inject(this);
 
-        if (mUserId == NowUserInfo.getNowUserInfo().getUser_id())
-            setSubmitEnable(true);//右边可以用
-        else {
-            setSubmitEnable(false);//右边可以用
-            mRightText.setText("");//没有文字
-            mTitleText.setText(mUserName + "的团队");
+        if (mIsPlace) {
+            if (mUserId == NowUserInfo.getNowUserInfo().getUser_id())
+                setSubmitEnable(true);//右边可以用
+            else {
+                setSubmitEnable(false);//右边可以用
+                mRightText.setText("");//没有文字
+                mTitleText.setText(mUserName + "的团队");
+            }
+        } else {
+            mTitleText.setText("我推荐的用户");
         }
 
-        mPresenter.getMyTeamInfo(mUserId);//获取我的团队信息
+        mPresenter.getMyTeamInfo(mUserId, mIsPlace);//获取我的团队信息
     }
 
     /**
@@ -120,8 +128,8 @@ public class MyTeamActivity extends AppMvpBaseActivity implements MyTeamContract
                 mRecyclerView.setLayoutManager(new LinearLayoutManager(MyTeamActivity.this));
                 mRecyclerView.addItemDecoration(new SpacesItemDecoration(SizeUtils.dp2px(10)));
                 mMemberAdapter.setOnItemClickListener(userBean -> {
-                    ARouter.getInstance().build(ARouterContract.MY_TEAM_MY_TEAM).withString("user_name", userBean.getName()) //跳转到用户信息页面
-                            .withInt("user_id", userBean.getUser_id()).navigation();
+                    if (mIsPlace)
+                        ShowTeamActivity.actionStart(getContext(), userBean.getUser_id(), userBean.getName());
                 });
             } else {
                 mMemberAdapter.notifyDataSetChanged();//唤醒数据更新
@@ -143,7 +151,7 @@ public class MyTeamActivity extends AppMvpBaseActivity implements MyTeamContract
     protected void onRefresh() {
         if (mUserId != 0) {//用户id不是0
             showNormalView();//展示正常view
-            mPresenter.getMyTeamInfo(mUserId);//获取我的团队信息
+            mPresenter.getMyTeamInfo(mUserId, mIsPlace);//获取我的团队信息
         }
     }
 }

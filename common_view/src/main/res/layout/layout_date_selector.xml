@@ -19,7 +19,7 @@
             android:layout_marginLeft="5dp"
             android:padding="10dp"
             android:text="取消"
-            android:textColor="@color/app_title_color"
+            android:textColor="@color/app_theme_color"
             android:textSize="16sp" />
 
         <TextView
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="请选择时间"
-            android:textColor="@color/app_title_color"
+            android:textColor="@color/app_theme_color"
             android:textSize="20sp"
             android:visibility="gone" />
 
@@ -41,7 +41,7 @@
             android:layout_marginRight="5dp"
             android:padding="10dp"
             android:text="完成"
-            android:textColor="@color/app_title_color"
+            android:textColor="@color/app_theme_color"
             android:textSize="16sp" />
 
     </RelativeLayout>
@@ -67,7 +67,7 @@
             android:layout_width="0dp"
             android:layout_height="160dp"
             android:layout_weight="4.4"
-            app:data1Color="@color/app_title_color">
+            app:data1Color="@color/app_theme_color">
 
         </com.example.common_view.custom_view.DatePickerView>
 
@@ -84,7 +84,7 @@
             android:layout_width="0dp"
             android:layout_height="160dp"
             android:layout_weight="3"
-            app:data1Color="@color/app_title_color">
+            app:data1Color="@color/app_theme_color">
 
         </com.example.common_view.custom_view.DatePickerView>
 
@@ -102,7 +102,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="3"
-            app:data1Color="@color/app_title_color">
+            app:data1Color="@color/app_theme_color">
 
         </com.example.common_view.custom_view.DatePickerView>
 

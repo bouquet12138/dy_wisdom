@@ -8,11 +8,21 @@ public class SetRecordBean {
 
     private int set_record_id;
     private int set_id;
-    private int user_id;
+    private Integer user_id;
     private String dispose;
     private String insert_time;
     private String update_time;
     private String pay_pass;
+
+    private SetBean set_bean;
+
+    public int getSet_record_id() {
+        return set_record_id;
+    }
+
+    public void setSet_record_id(int set_record_id) {
+        this.set_record_id = set_record_id;
+    }
 
     public int getSet_id() {
         return set_id;
@@ -22,11 +32,11 @@ public class SetRecordBean {
         this.set_id = set_id;
     }
 
-    public int getUser_id() {
+    public Integer getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(int user_id) {
+    public void setUser_id(Integer user_id) {
         this.user_id = user_id;
     }
 
@@ -60,5 +70,13 @@ public class SetRecordBean {
 
     public void setPay_pass(String pay_pass) {
         this.pay_pass = pay_pass;
+    }
+
+    public SetBean getSet_bean() {
+        return set_bean;
+    }
+
+    public void setSet_bean(SetBean set_bean) {
+        this.set_bean = set_bean;
     }
 }

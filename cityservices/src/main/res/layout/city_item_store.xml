@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.qmuiteam.qmui.layout.QMUILinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:gravity="center_vertical"
+    android:padding="5dp">
+
+    <com.qmuiteam.qmui.widget.QMUIRadiusImageView
+        app:qmui_border_width="0dp"
+        android:id="@+id/storeImg"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:src="@drawable/man_head" />
+
+    <TextView
+        android:id="@+id/storeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:text="诸城市北半球店"
+        android:textColor="@color/app_dark_text_color" />
+
+</com.qmuiteam.qmui.layout.QMUILinearLayout>

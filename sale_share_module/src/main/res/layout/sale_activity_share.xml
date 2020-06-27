@@ -40,6 +40,8 @@
 
         <com.qmuiteam.qmui.widget.tab.QMUITabSegment
             android:id="@+id/tableLayout"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:textSize="12sp"

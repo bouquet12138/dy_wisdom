@@ -1,6 +1,5 @@
 package com.example.common_lib.java_bean;
 
-
 import java.io.Serializable;
 
 public class FlashContentBean implements Serializable {

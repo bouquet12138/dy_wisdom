@@ -65,6 +65,45 @@
     </LinearLayout>
 
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/app_back_color" />
+    <!--互转积分记录-->
+    <LinearLayout
+        android:id="@+id/transfer"
+        style="@style/main_person_line_layout">
+
+        <ImageView
+            style="@style/main_person_image"
+            android:padding="2dp"
+            android:src="@drawable/main_transfer_record" />
+
+        <TextView
+            style="@style/main_person_line_text"
+            android:text="积分互转" />
+
+    </LinearLayout>
+
+    <!--一根线-->
+    <View style="@style/main_divider" />
+
+    <!--销售积分转兑换积分-->
+    <LinearLayout
+        android:id="@+id/conversion"
+        style="@style/main_person_line_layout">
+
+        <ImageView
+            style="@style/main_person_image"
+            android:padding="2dp"
+            android:src="@drawable/main_sale_to_redeem" />
+
+        <TextView
+            style="@style/main_person_line_text"
+            android:text="积分转换" />
+
+    </LinearLayout>
+
     <!--一根线-->
     <View style="@style/main_divider" />
 

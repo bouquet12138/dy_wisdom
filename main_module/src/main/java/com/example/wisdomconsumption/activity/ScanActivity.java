@@ -2,6 +2,7 @@ package com.example.wisdomconsumption.activity;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -9,7 +10,12 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.blankj.utilcode.util.GsonUtils;
+import com.example.common_lib.contract.ARouterContract;
 import com.example.wisdomconsumption.R;
+import com.example.wisdomconsumption.java_bean.QRBean;
+import com.google.gson.JsonSyntaxException;
 import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 import com.uuzuche.lib_zxing.activity.CaptureFragment;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
@@ -61,11 +67,36 @@ public class ScanActivity extends AppCompatActivity {
         public void onAnalyzeSuccess(Bitmap mBitmap, String result) {
             if (!mAnalyseSuccess) {//如果没有解析成功
                 mPatienceWaitText.setVisibility(View.INVISIBLE);//耐心等待不可见
-                mAnalyseSuccess = true;
-              /*  ARouter.getInstance().build(ARouterContract.PAYROLL_TRANSFERS).withString("targetPhone", result)
-                        .navigation();*/
-                //TODO:记得处理
-                finish();//销毁自己
+
+                Log.d(TAG, "onAnalyzeSuccess: " + result);
+                QRBean qrBean = null;
+                try {
+                    qrBean = GsonUtils.fromJson(result, QRBean.class);
+                } catch (JsonSyntaxException e) {
+                }
+
+                if (qrBean == null) {
+                    showErrorHint("请扫描正确的二维码");
+                } else if (QRBean.SALE_SHARE.equals(qrBean.getType())) {
+                    mAnalyseSuccess = true;
+                    ARouter.getInstance().build(ARouterContract.SALE_SHARE_TRANSFER).withString("targetPhone", qrBean.getPhone_num())
+                            .navigation();
+                    finish();//销毁自己
+                } else if (QRBean.SPREAD.equals(qrBean.getType())) {
+                    mAnalyseSuccess = true;
+                    ARouter.getInstance().build(ARouterContract.SALE_SHARE_TRANSFER).withString("targetPhone", qrBean.getPhone_num()).withInt("position", 1)
+                            .navigation();
+                    finish();//销毁自己
+                } else if (QRBean.MERCHANTS.equals(qrBean.getType())) {
+                    ARouter.getInstance().build(ARouterContract.REDEEM_PAY).withInt("target_user_id", qrBean.getUser_id())
+                            .navigation();
+                    finish();//销毁自己
+                } else {
+                    showErrorHint("请扫描正确的二维码");
+                }
+
+            } else {
+                showErrorHint("请扫描正确的二维码");
             }
         }
 

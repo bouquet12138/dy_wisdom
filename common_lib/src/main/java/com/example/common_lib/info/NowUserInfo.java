@@ -29,6 +29,15 @@ public class NowUserInfo {
         editor.apply();
     }
 
+    public static void setNowUserEmpty() {
+        sUserBean = null;//设置一下
+        SharedPreferences sharedPreferences = MyApplication.getContext().
+                getSharedPreferences("nowUser", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("userBean", "");
+        editor.apply();
+    }
+
     /**
      * 得到当前学生信息
      */
@@ -40,9 +49,9 @@ public class NowUserInfo {
             sUserBean = GsonUtils.fromJson(userInfo, UserBean.class);
         }
 
-        if (sUserBean == null) {//还是空的话
+        if (sUserBean == null) //还是空的话
             Log.e(TAG, "getNowStudentInfo: ");
-        }
+
         return sUserBean;
     }
 

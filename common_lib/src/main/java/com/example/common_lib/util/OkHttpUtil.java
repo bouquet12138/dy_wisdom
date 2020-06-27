@@ -26,8 +26,6 @@ public class OkHttpUtil {
 
     public static final MediaType JSON = MediaType.Companion.parse("application/json;charset=utf-8");
 
-
-
     public static void sendOkHttpRequest(String address, okhttp3.Callback callback) {
         OkHttpClient.Builder httpBuilder = new OkHttpClient.Builder();
         OkHttpClient client =

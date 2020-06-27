@@ -30,6 +30,7 @@ public class AppPresenter extends MVPBasePresenter<AppContract.IView>
                 case SUCCESS:
                     BaseBean<AppBean> baseBean = (BaseBean) msg.obj;
                     if (baseBean.getCode() == 1) {
+                        getView().showNormalView();//展示正常view
                         getView().setAppInfo(baseBean.getData());//app信息
                     } else {
                         getView().showToast(baseBean.getMsg());//展示提示信息
@@ -53,7 +54,8 @@ public class AppPresenter extends MVPBasePresenter<AppContract.IView>
         if (!isViewAttached())
             return;
         if (!NetworkUtils.isConnected()) {
-            getView().showErrorHint("网络错误");
+            getView().showNetError();
+            getView().registerNetworkListener();//注册网络监听
             return;
         }
         getView().showLoading("信息加载中");

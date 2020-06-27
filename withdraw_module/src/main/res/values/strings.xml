@@ -1,0 +1,9 @@
+<resources>
+    <string name="withdrawal_rules">
+        <![CDATA[
+        1.提现只能提整百<br />
+        2.提现收取5%的服务费<br />
+        ]]>
+    </string>
+
+</resources>

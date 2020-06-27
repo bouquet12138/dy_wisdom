@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/businessNum"
+        style="@style/my_team_team_num_style"
+        android:text="加盟商 0人"
+        android:textColor="@color/business" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/app_line_color" />
+
+    <TextView
+        android:id="@+id/coopNum"
+        style="@style/my_team_team_num_style"
+        android:text="合作商 0人"
+        android:textColor="@color/coop" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/app_line_color" />
+
+    <TextView
+        android:id="@+id/agentNum"
+        style="@style/my_team_team_num_style"
+        android:text="代理商 0人"
+        android:textColor="@color/agent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/app_line_color" />
+
+    <TextView
+        android:id="@+id/serviceNum"
+        style="@style/my_team_team_num_style"
+        android:text="服务商 0人"
+        android:textColor="@color/service" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/app_line_color" />
+
+    <TextView
+        android:id="@+id/serviceCenterNum"
+        style="@style/my_team_team_num_style"
+        android:text="服务中心 0人"
+        android:textColor="@color/service_center" />
+
+    <!--<View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/app_line_color" />-->
+
+</LinearLayout>

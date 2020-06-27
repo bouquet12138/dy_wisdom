@@ -63,7 +63,7 @@ public class AppUpdateActivity extends AppMvpBaseActivity implements View.OnClic
 
     @Override
     protected String getTitleName() {
-        return "应用信息";
+        return "检测更新";
     }
 
     @Override
@@ -79,7 +79,7 @@ public class AppUpdateActivity extends AppMvpBaseActivity implements View.OnClic
 
     @Override
     protected void onRefresh() {
-
+        mPresenter.getAppInfo();//得到app信息
     }
 
     @Override

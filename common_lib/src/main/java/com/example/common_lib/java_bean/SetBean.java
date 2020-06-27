@@ -1,6 +1,5 @@
 package com.example.common_lib.java_bean;
 
-
 public class SetBean {
 
     public static final String SET_TYPE_JOIN = "加盟商";
@@ -97,5 +96,15 @@ public class SetBean {
 
     public void setSet_count(int set_count) {
         this.set_count = set_count;
+    }
+
+    private boolean selected;
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 }

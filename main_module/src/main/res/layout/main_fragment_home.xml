@@ -5,16 +5,15 @@
     android:background="@color/app_light_back_color"
     android:orientation="vertical">
 
-    <TextView
+   <!-- <TextView
         android:id="@+id/title"
         style="@style/toolBarText"
         android:gravity="center"
-        android:text="主页" />
+        android:text="主页" />-->
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/title"
         app:srlAccentColor="@android:color/white"
         app:srlEnablePureScrollMode="true">
 
@@ -27,12 +26,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:orientation="vertical">
 
                 <com.youth.banner.Banner
                     android:id="@+id/banner"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="160dp"
                     android:layout_margin="15dp"
                     app:indicator_gravity="right"
                     app:indicator_selected_color="@color/app_title_color">
@@ -114,7 +114,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
-                    android:lineSpacingMultiplier="1.3"
+                    android:lineSpacingMultiplier="1.5"
                     android:padding="10dp"
                     android:text="&#8194;&#8194;&#8194;&#8194;本公司专注于网站搭建，小程序制作，软件开发以及企业宣传片、商业广告、产品广告、电视节目、人物vcr、活动花絮等拍摄与制作，我们始终相信，用心打造的才是精品，用最短的时间，提供最优质、最便捷的服务，我们愿以细水长流之姿，传播德蕴悠扬之美！
 让每一种源于生活的创意用于生活。" />

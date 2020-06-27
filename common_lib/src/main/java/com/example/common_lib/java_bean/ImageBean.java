@@ -1,6 +1,5 @@
 package com.example.common_lib.java_bean;
 
-
 import java.io.Serializable;
 
 public class ImageBean implements Serializable {
@@ -13,11 +12,6 @@ public class ImageBean implements Serializable {
     private String image_type;//图片类型
     private String image_describe;//图片描述
     private String insert_time;//插入时间
-
-    public ImageBean(int image_id, String image_describe) {
-        this.image_id = image_id;
-        this.image_describe = image_describe;
-    }
 
     public int getImage_id() {
         return image_id;

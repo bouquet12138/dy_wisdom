@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--内部滚动-->
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/app_back_color"
+        android:orientation="vertical">
+
+
+        <!--商品图片-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/imageNumText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="10dp"
+                android:background="@drawable/shop_shape_num"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="5dp"
+                android:textColor="#fff" />
+
+        </RelativeLayout>
+
+        <!--商品标题-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/app_title_color"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/moneyText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="￥3900"
+                android:textColor="@color/red_btn_bg_color" />
+
+
+            <TextView
+                android:id="@+id/goodTitleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="商品标题"
+                android:textColor="@color/app_dark_text_color"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/goodDescribeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="商品描述"
+                android:textSize="12dp" />
+
+        </LinearLayout>
+
+        <!--收货地址-->
+        <com.qmuiteam.qmui.layout.QMUILinearLayout
+            android:id="@+id/root1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/app_title_color"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+
+                <TextView
+                    android:id="@+id/tak_good_address"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:lineSpacingMultiplier="1.3"
+                    android:text="收货地址：" />
+
+                <TextView
+                    android:id="@+id/changeAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="更改"
+                    android:textColor="@color/app_theme_color" />-->
+
+            </LinearLayout>
+
+        </com.qmuiteam.qmui.layout.QMUILinearLayout>
+
+        <com.qmuiteam.qmui.layout.QMUILinearLayout
+            android:id="@+id/root2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/app_title_color"
+            android:padding="10dp">
+
+
+            <!--支付密码-->
+            <LinearLayout style="@style/personInfoBackGroundStyle">
+
+                <TextView
+                    style="@style/personalInfoTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="支付密码:" />
+
+                <com.example.common_view.editText.MyEditText
+                    android:id="@+id/payPassword"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:hint="6位数字"
+                    app:inputType="number_password"
+                    app:maxLength="6"></com.example.common_view.editText.MyEditText>
+
+                <com.example.common_view.custom_view.ShowPasswordView
+                    android:id="@+id/passwordBt"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp" />
+            </LinearLayout>
+
+        </com.qmuiteam.qmui.layout.QMUILinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="300dp"></View>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
+

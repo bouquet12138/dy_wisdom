@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:id="@+id/profitLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/allProfitMerchantText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="总资金:"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/profitMerchantText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="可提资金:"
+            android:textColor="@color/coop"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/profitMerchantFrozenText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:text=""
+            android:textColor="@color/agent"
+            android:textSize="12dp" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/personInfoBackGroundStyle">
+
+        <TextView
+            style="@style/personalInfoTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="提现金额:" />
+
+        <!--提现金额-->
+        <com.example.common_view.editText.MyEditText
+            android:id="@+id/amountNum"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            app:hint="只能提现整百的数额"
+            app:inputType="number"></com.example.common_view.editText.MyEditText>
+
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/personInfoBackGroundStyle">
+
+        <TextView
+            style="@style/personalInfoTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="支付密码:" />
+
+        <com.example.common_view.editText.MyEditText
+            android:id="@+id/password"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:background="@null"
+            app:hint="请输入支付密码"
+            app:inputType="number_password"
+            app:maxLength="6" />
+
+        <com.example.common_view.custom_view.ShowPasswordView
+            android:id="@+id/passwordBt"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/personInfoBackGroundStyle">
+
+        <TextView
+            style="@style/personalInfoTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="备注:&#12288;&#12288;" />
+
+        <com.example.common_view.editText.MyEditText
+            android:id="@+id/remark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            app:hint="备注">
+
+        </com.example.common_view.editText.MyEditText>
+
+    </LinearLayout>
+
+    <!--提现方式-->
+    <LinearLayout style="@style/personInfoBackGroundStyle">
+
+        <TextView
+            style="@style/personalInfoTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="提现方式:" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/bandCard"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="银行卡" />
+
+            <RadioButton
+                android:id="@+id/alipay"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="支付宝" />
+
+            <RadioButton
+                android:id="@+id/wechat"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="微信" />
+
+
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout style="@style/personInfoBackGroundStyle">
+
+        <TextView
+            android:id="@+id/accountTypeText"
+            style="@style/personalInfoTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="银行卡号:" />
+
+        <com.example.common_view.editText.MyEditText
+            android:id="@+id/accountText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"></com.example.common_view.editText.MyEditText>
+
+    </LinearLayout>
+
+    <!-- <LinearLayout style="@style/personInfoBackGroundStyle">
+
+     <LinearLayout style="@style/personInfoBackGroundStyle">
+
+               <TextView
+                   style="@style/personalInfoTextStyle"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="银行卡号:&#12288;" />
+
+               <com.example.common_view.editText.MyEditText
+                   android:id="@+id/bandCardText"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"></com.example.common_view.editText.MyEditText>
+
+           </LinearLayout>
+
+           <LinearLayout style="@style/personInfoBackGroundStyle">
+
+               <TextView
+                   style="@style/personalInfoTextStyle"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="支付宝:&#12288;&#12288;" />
+
+               <com.example.common_view.editText.MyEditText
+                   android:id="@+id/alipayText"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"></com.example.common_view.editText.MyEditText>
+
+           </LinearLayout>
+
+           <LinearLayout style="@style/personInfoBackGroundStyle">
+
+               <TextView
+                   style="@style/personalInfoTextStyle"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="微信:&#12288;&#12288;&#12288;" />
+
+               <com.example.common_view.editText.MyEditText
+                   android:id="@+id/wechatText"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"></com.example.common_view.editText.MyEditText>
+
+           </LinearLayout>
+       -->
+
+    <!--确定按钮-->
+    <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
+        android:id="@+id/confirmBt"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:enabled="false"
+        android:text="提&#12288;&#12288;现"
+        android:textColor="#fff"
+        app:qmui_backgroundColor="@drawable/selector_bt_color"
+        app:qmui_borderWidth="0dp"
+        app:qmui_isRadiusAdjustBounds="true" />
+
+    <TextView
+        android:id="@+id/withdrawTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:padding="10dp"
+        android:text="提现规则"
+        android:textColor="@color/app_theme_color" />
+
+
+</LinearLayout>

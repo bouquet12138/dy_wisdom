@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
+import com.blankj.utilcode.util.NetworkUtils;
 import com.example.base_lib.base.MVPBasePresenter;
 import com.example.base_lib.listener.OnGetInfoListener;
 import com.example.common_lib.info.NowUserInfo;
@@ -41,7 +42,7 @@ public class PersonPresenter extends MVPBasePresenter<PersonContract.IView>
                     }
                     break;
                 case INFO_NET_ERROR:
-                    getView().showErrorHint("网络错误");
+                    // getView().showErrorHint("网络错误");
                     break;
                 case INFO_ON_COMPLETE:
                     getView().hideLoading();//隐藏加载进度框
@@ -51,9 +52,13 @@ public class PersonPresenter extends MVPBasePresenter<PersonContract.IView>
         }
     };
 
+
     @Override
     public void getUserInfo() {
         if (!isViewAttached())//没绑定就返回
+            return;
+
+        if (!NetworkUtils.isConnected())
             return;
 
         UserBean userBean = NowUserInfo.getNowUserInfo();

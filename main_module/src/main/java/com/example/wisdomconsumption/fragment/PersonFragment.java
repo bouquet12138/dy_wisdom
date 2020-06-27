@@ -3,11 +3,14 @@ package com.example.wisdomconsumption.fragment;
 
 import android.Manifest;
 import android.content.Intent;
+
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -16,18 +19,23 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+
 import androidx.fragment.app.Fragment;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+
+import com.blankj.utilcode.util.FragmentUtils;
 import com.blankj.utilcode.util.SizeUtils;
 import com.example.base_lib.base.BaseFragment;
 import com.example.common_lib.contract.ARouterContract;
 import com.example.common_lib.info.NowUserInfo;
 import com.example.common_lib.java_bean.UserBean;
+import com.example.common_lib.java_bean.WithdrawBean;
 import com.example.common_lib.util.HeadImageUtil;
 import com.example.common_lib.util.NumberFormatUtil;
 import com.example.wisdomconsumption.R;
 import com.example.wisdomconsumption.activity.AccountManagerActivity;
+import com.example.wisdomconsumption.activity.QRActivity;
 import com.example.wisdomconsumption.activity.ScanActivity;
 import com.example.wisdomconsumption.contract.PersonContract;
 import com.example.wisdomconsumption.presenter.PersonPresenter;
@@ -44,6 +52,7 @@ import pub.devrel.easypermissions.EasyPermissions;
 public class PersonFragment extends BaseFragment implements View.OnClickListener, EasyPermissions.PermissionCallbacks, PersonContract.IView {
 
     private final int SCAN = 0;//扫码
+    private static final String TAG = "PersonFragment";
 
     private ImageView mHead;
     private TextView mNameText;
@@ -61,6 +70,9 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
     private ViewGroup mMyTeam;
     private ViewGroup mCan_get;
     private ViewGroup mWithdraw;
+
+    private ViewGroup mTransfer;//互转
+    private ViewGroup mConversion;//转换
     private ViewGroup mPromotionRecord;
     private ViewGroup mAccountManager;
 
@@ -68,7 +80,9 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
     private ImageView mQrImg;
     private ImageView mSetImg;
 
+    private View mToolBar;
     private ScrollView mScrollView;
+
 
     private PersonPresenter mPresenter = new PersonPresenter();
 
@@ -90,8 +104,13 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
             mPresenter.attachView(this);//绑定一下
             initView();
             initData();//初始化数据
+            replaceFragment();
             initListener();
         }
+    }
+
+    private void replaceFragment() {
+        FragmentUtils.replace(getActivity().getSupportFragmentManager(), new OrderFragment(), R.id.frameLayout2);
     }
 
     /**
@@ -99,8 +118,8 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
      */
     @Override
     public void onResume() {
-        mPresenter.getUserInfo();//获取用户信息
         super.onResume();
+        refreshData();//刷新一下数据
     }
 
     /**
@@ -109,10 +128,10 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
     private void initView() {
         QMUILinearLayout cardLayout = mView.findViewById(R.id.cardLayout);
         cardLayout.setRadiusAndShadow(SizeUtils.dp2px(10), SizeUtils.dp2px(5), 0.5f);
-        cardLayout = mView.findViewById(R.id.cardLayout2);//第二个cardLayout
-        cardLayout.setRadiusAndShadow(SizeUtils.dp2px(10), SizeUtils.dp2px(5), 0.5f);
+
 
         mScrollView = mView.findViewById(R.id.scrollView);//滚动view
+        mToolBar = mView.findViewById(R.id.toolBar);
 
         mHead = mView.findViewById(R.id.head);
         mNameText = mView.findViewById(R.id.nameText);
@@ -131,12 +150,17 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
         mMyTeam = mView.findViewById(R.id.myTeam);
         mCan_get = mView.findViewById(R.id.can_get);
         mWithdraw = mView.findViewById(R.id.withdraw);
+
+        mTransfer = mView.findViewById(R.id.transfer);//互转
+        mConversion = mView.findViewById(R.id.conversion);//转换
+
         mPromotionRecord = mView.findViewById(R.id.promotionRecord);
         mAccountManager = mView.findViewById(R.id.accountManager);
 
         mScanImg = mView.findViewById(R.id.scanImg);
         mQrImg = mView.findViewById(R.id.qrImg);
         mSetImg = mView.findViewById(R.id.setImg);
+
     }
 
     /**
@@ -158,6 +182,12 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
         setTitle(userBean.getRedeem_integral(), "兑换积分", mRedeem_integral);//兑换积分
         setTitle(userBean.getBonus_integral(), "分润积分", mBonus_integral);//分润积分
         setTitle(userBean.getSpread_integral(), "推广积分", mSpread_integral);//推广积分
+
+        if (UserBean.MERCHANT_NO.equals(userBean.getIs_merchant())) {
+            mMerchantWithdraw.setVisibility(View.GONE);//商家提现不可用
+        } else {
+            mMerchantWithdraw.setVisibility(View.VISIBLE);//商家提现可用
+        }
     }
 
     /**
@@ -176,7 +206,7 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
 
         //f34624
 
-        spannableString.setSpan(new AbsoluteSizeSpan(SizeUtils.dp2px(13)),
+        spannableString.setSpan(new AbsoluteSizeSpan(SizeUtils.dp2px(12)),
                 numStr.length(), str.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         spannableString.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.app_theme_color)),
                 0, numStr.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
@@ -193,6 +223,7 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
      */
     private void initListener() {
 
+        mHead.setOnClickListener(this);//点击监听
         mEditText.setOnClickListener(this);
 
         mSale_share_integral.setOnClickListener(this);
@@ -203,16 +234,35 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
         mMyTeam.setOnClickListener(this);
         mCan_get.setOnClickListener(this);
         mWithdraw.setOnClickListener(this);
+
+        mTransfer.setOnClickListener(this);
+        mConversion.setOnClickListener(this);
+
         mPromotionRecord.setOnClickListener(this);
+
         mScanImg.setOnClickListener(this);
         mQrImg.setOnClickListener(this);
         mSetImg.setOnClickListener(this);
         mAccountManager.setOnClickListener(this);
+
+        mMerchantWithdraw.setOnClickListener(this);//商家提现
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            mScrollView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+                float alpha = scrollY / (float) SizeUtils.dp2px(100);
+                alpha = Math.min(alpha, 1f);
+                Log.d(TAG, "initListener: 透明度 " + alpha);
+                mToolBar.setAlpha(alpha);//设置不透明度
+            });
+        }
+
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.head:
             case R.id.editText:
                 ARouter.getInstance().build(ARouterContract.LOGIN_INFO) //跳转到用户信息页面
                         .navigation();
@@ -222,34 +272,54 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
                         .navigation();
                 break;
             case R.id.redeem_integral:
+                ARouter.getInstance().build(ARouterContract.REDEEM_REDEEM) //跳转到兑换积分界面
+                        .navigation();
                 break;
             case R.id.bonus_integral:
+                ARouter.getInstance().build(ARouterContract.BONUS_BONUS) //跳转到分润积分界面
+                        .navigation();
                 break;
             case R.id.spread_integral:
+                ARouter.getInstance().build(ARouterContract.SPREAD_SPREAD) //跳转到推广积分界面
+                        .navigation();
                 break;
             case R.id.myTeam:
                 ARouter.getInstance().build(ARouterContract.MY_TEAM_MY_TEAM).withString("user_name", NowUserInfo.getNowUserInfo().getName()) //跳转到用户信息页面
-                        .withInt("user_id", NowUserInfo.getNowUserId()).navigation();
+                        .withInt("user_id", NowUserInfo.getNowUserId()).withBoolean("is_place", true).navigation();
                 break;
             case R.id.can_get:
+                ARouter.getInstance().build(ARouterContract.SET_CAN_GET_REWARD).navigation();//跳转到可领奖励页面
                 break;
             case R.id.withdraw:
+                ARouter.getInstance().build(ARouterContract.WITHDRAW_RECORD).navigation();//跳转到积分互转页面
+                break;
+            case R.id.transfer:
+                ARouter.getInstance().build(ARouterContract.SALE_SHARE_TRANSFER).navigation();//跳转到积分互转页面
+                break;
+            case R.id.conversion://转换
+                ARouter.getInstance().build(ARouterContract.SALE_SHARE_CONVERSION).navigation();//跳转到积分互转页面
                 break;
             case R.id.promotionRecord:
+                ARouter.getInstance().build(ARouterContract.MY_TEAM_MY_TEAM).withString("user_name", NowUserInfo.getNowUserInfo().getName()) //跳转到用户信息页面
+                        .withInt("user_id", NowUserInfo.getNowUserId()).withBoolean("is_place", false).navigation();
                 break;
             case R.id.scanImg:
                 String[] perms = {Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE};
-
                 if (EasyPermissions.hasPermissions(getContext(), perms))//判断有没有权限
                     startScan();//去扫码
                 else
                     EasyPermissions.requestPermissions(this, "扫码", SCAN, perms);
                 break;
             case R.id.qrImg:
+                startActivity(new Intent(getContext(), QRActivity.class));//展示二维码页面
                 break;
             case R.id.accountManager://账号管理
             case R.id.setImg:
                 startActivity(new Intent(getContext(), AccountManagerActivity.class));
+                break;
+            case R.id.merchantWithdraw://商家提现
+                ARouter.getInstance().build(ARouterContract.WITHDRAW_WITHDRAW) //提现
+                        .withString("withdraw_type", WithdrawBean.MERCHANT_WITHDRAW).navigation();
                 break;
         }
     }
@@ -299,13 +369,27 @@ public class PersonFragment extends BaseFragment implements View.OnClickListener
      * 刷新一下信息
      */
     public void refresh() {
+
+        refreshData();
+
+        if (mScrollView != null) //滚动view 不是空
+            mScrollView.fullScroll(ScrollView.FOCUS_UP);//滚动到顶部
+    }
+
+    /**
+     * 刷新数据
+     */
+    private void refreshData() {
+        UserBean userBean = NowUserInfo.getNowUserInfo();
+        if (userBean == null)
+            return;
+
         long nowRefreshTime = System.currentTimeMillis();//当前时间
         if (nowRefreshTime - mLastRefreshTime > 2000) {
+            replaceFragment();
             mPresenter.getUserInfo();
             mLastRefreshTime = nowRefreshTime;
         }
-        if (mScrollView != null) //滚动view 不是空
-            mScrollView.fullScroll(ScrollView.FOCUS_UP);//滚动到顶部
     }
 
 }

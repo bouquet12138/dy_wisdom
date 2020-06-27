@@ -14,7 +14,7 @@
 
         <TextView
             style="@style/toolBarText"
-            android:text="登陆发现新世界" />
+            android:text="登录发现新世界" />
 
         <LinearLayout
             android:layout_width="wrap_content"

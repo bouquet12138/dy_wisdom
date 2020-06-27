@@ -1,11 +1,10 @@
 package com.example.common_lib.java_bean;
 
-
 public class SpreadRecordBean {
 
-    public static final String INTEGRAL_TYPE_TRANSFERS = "互转";
+    public static final String INTEGRAL_TYPE_TRAN = "互转";
     public static final String INTEGRAL_TYPE_REGISTER = "注册用户";
-    public static final String INTEGRAL_TYPE_TOP = "充值";
+    public static final String INTEGRAL_TYPE_RECHARGE = "充值";
     public static final String INTEGRAL_TYPE_ELSE = "其他";
 
     private int spread_id;

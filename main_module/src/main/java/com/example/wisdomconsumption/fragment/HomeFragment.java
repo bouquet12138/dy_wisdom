@@ -19,7 +19,10 @@ import com.blankj.utilcode.util.SizeUtils;
 import com.example.base_lib.base.BaseFragment;
 import com.example.base_lib.util.CornerUtil;
 import com.example.common_lib.contract.ARouterContract;
+import com.example.common_lib.info.NowUserInfo;
 import com.example.common_lib.java_bean.BannerBean;
+import com.example.common_lib.java_bean.GoodBean;
+import com.example.common_lib.java_bean.UserBean;
 import com.example.flash_module.fragment.FlashFragment;
 import com.example.wisdomconsumption.R;
 import com.example.wisdomconsumption.activity.AboutUsActivity;
@@ -41,8 +44,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
     private NestedScrollView mScrollView;//滚动view
     private Banner mBanner;
 
-    private ViewGroup mMyShop;
-    private ViewGroup mIntegralShop;
+    private ViewGroup mOnlineShop;
+    private ViewGroup mBonusIntegralShop;
     private ViewGroup mCity;
     private ViewGroup mPopularize_app;
 
@@ -79,8 +82,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
         mScrollView = mView.findViewById(R.id.scrollView);
 
         mBanner = mView.findViewById(R.id.banner);
-        mMyShop = mView.findViewById(R.id.myShop);
-        mIntegralShop = mView.findViewById(R.id.integralShop);//积分商城
+        mOnlineShop = mView.findViewById(R.id.onlineShop);
+        mBonusIntegralShop = mView.findViewById(R.id.bonusIntegralShop);//积分商城
 
         mCompanyBusiness = mView.findViewById(R.id.companyBusiness);//公司业务
         mCity = mView.findViewById(R.id.city);
@@ -95,8 +98,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
      */
     private void initListener() {
 
-        mMyShop.setOnClickListener(this);
-        mIntegralShop.setOnClickListener(this);//点击监听
+        mOnlineShop.setOnClickListener(this);
+        mBonusIntegralShop.setOnClickListener(this);//点击监听
         mCity.setOnClickListener(this);
 
         mCompanyBusiness.setOnClickListener(this);//公司业务
@@ -119,26 +122,38 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener, 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.myShop:
-                //  startActivity(new Intent(getContext(), ShoppingActivity.class));//启动积分商城activity
+            case R.id.onlineShop://
+                ARouter.getInstance().build(ARouterContract.SHOP_SHOP).withString("shopType", GoodBean.ON_LINE) //在线商城
+                        .navigation();
                 break;
-            case R.id.integralShop://积分商城
-                // startActivity(new Intent(getContext(), IntegralShopActivity.class));//启动积分商城activity
+            case R.id.bonusIntegralShop://积分商城
+                ARouter.getInstance().build(ARouterContract.SHOP_SHOP).withString("shopType", GoodBean.BONUS_LINE) //在线商城
+                        .navigation();
                 break;
             case R.id.city:
-               /* ARouter.getInstance().build(ARouterContract.CITY_SERVICES) //城市服务
-                        .navigation();*/
+                ARouter.getInstance().build(ARouterContract.CITY_SERVICES) //城市服务
+                        .navigation();
                 break;
-            case R.id.companyBusiness://公司业务
-               /* ARouter.getInstance().build(ARouterContract.BUSINESS_ADVERT) //公司业务
-                        .navigation();*/
+            case R.id.companyBusiness://套餐店铺
+
+                UserBean userBean = NowUserInfo.getNowUserInfo();
+                if (userBean == null) {
+                    showErrorHint("请先登录");
+                } else {
+                    ARouter.getInstance().build(ARouterContract.SET_SET_SHOP) //跳转到套餐店铺
+                            .navigation();
+                }
                 break;
             case R.id.popularize_app:
                 startActivity(new Intent(getContext(), PromotionActivity.class));//启动推广activity
                 break;
             case R.id.member_register:
-                ARouter.getInstance().build(ARouterContract.LOGIN_REGISTER) //跳转到注册页面
-                        .navigation();
+                UserBean userBean1 = NowUserInfo.getNowUserInfo();
+                if (userBean1 == null) {
+                    showErrorHint("请先登录");
+                } else
+                    ARouter.getInstance().build(ARouterContract.LOGIN_REGISTER) //跳转到注册页面
+                            .navigation();
                 break;
             case R.id.customer_center:
                 startActivity(new Intent(getContext(), ServiceCenterActivity.class));//启动activity

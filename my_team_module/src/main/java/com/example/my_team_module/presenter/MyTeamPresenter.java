@@ -2,6 +2,7 @@ package com.example.my_team_module.presenter;
 
 import android.os.Handler;
 import android.os.Message;
+
 import com.blankj.utilcode.util.NetworkUtils;
 import com.example.base_lib.base.MVPBasePresenter;
 import com.example.base_lib.listener.OnGetInfoListener;
@@ -55,18 +56,18 @@ public class MyTeamPresenter extends MVPBasePresenter<MyTeamContract.IView>
     private static final String TAG = "MyTeamPresenter";
 
     @Override
-    public void getMyTeamInfo(int userId) {
+    public void getMyTeamInfo(int userId, boolean isPlace) {
         if (!isViewAttached())
             return;
         if (!NetworkUtils.isConnected()) {
-            getView().showErrorHint("网络错误");
             getView().showNetError();//展示网络错误
+            getView().registerNetworkListener();//注册网络监听
             return;
         }
 
         getView().showLoading("信息加载中..");
 
-        mModel.myTeam(userId, new OnGetInfoListener<BaseBean<List<UserBean>>>() {
+        mModel.myTeam(userId, isPlace, new OnGetInfoListener<BaseBean<List<UserBean>>>() {
             @Override
             public void onComplete() {
                 mHandler.sendEmptyMessage(COMPLETE);

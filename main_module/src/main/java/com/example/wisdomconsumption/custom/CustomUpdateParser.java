@@ -51,13 +51,14 @@ public class CustomUpdateParser implements IUpdateParser {
         if (result != null && result.getCode() == 1 && result.getData() != null) {
             AppBean appBean = result.getData();
             Log.d(TAG, "getParseResult: 是否有更新 " + hasUpdate(appBean.getVersion_code(), appBean.getVersion_name()));
+            Log.d(TAG, "getParseResult: ");
             return new UpdateEntity().
                     setHasUpdate(hasUpdate(appBean.getVersion_code(), appBean.getVersion_name()))
                     .setIsIgnorable(AppBean.UPDATE.equals(appBean.getUpdate_status()))
                     .setVersionCode(appBean.getVersion_code())
                     .setVersionName(appBean.getVersion_name())
                     .setUpdateContent(appBean.getApp_describe())
-                    .setDownloadUrl(ServerInfo.getServerAddress(appBean.getApp_url()))
+                    .setDownloadUrl(ServerInfo.getAppDownloadAddress(appBean.getApp_url()))
                     .setSize(appBean.getApp_size() / 1024);
         }
         return null;

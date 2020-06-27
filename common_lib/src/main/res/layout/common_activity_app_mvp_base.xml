@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rootView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_back_color">
+    android:background="@color/app_back_color"
+    android:orientation="vertical">
+
+
+    <include layout="@layout/common_layout_no_more" />
+
+    <include layout="@layout/common_layout_net_error" />
 
     <!--标题栏-->
     <RelativeLayout
@@ -31,29 +38,21 @@
 
     </RelativeLayout>
 
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/toolBar"
-        app:srlAccentColor="@android:color/white"
-        app:srlEnablePureScrollMode="true">
+        app:srlEnableFooterFollowWhenNoMoreData="true"
+        app:srlEnableOverScrollDrag="true"
+        app:srlPrimaryColor="@color/app_theme_color">
+
 
         <FrameLayout
             android:id="@+id/frameLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/toolBar">
-
-        </FrameLayout>
+            android:layout_height="wrap_content" />
 
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-
-    <!--提交按钮-->
-    <!--    <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatBt"
-            style="@style/float_bt"
-            android:backgroundTint="@color/app_title_color" />-->
 
 </RelativeLayout>

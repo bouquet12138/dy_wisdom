@@ -2,6 +2,7 @@ package com.example.login_module.contract;
 
 
 import com.example.base_lib.base.IMVPBaseView;
+import com.example.common_lib.java_bean.UserBean;
 
 public interface LoginContract {
 
@@ -35,6 +36,8 @@ public interface LoginContract {
 
         void showPrivacy();//展示隐私政策
 
+        void setHeadImg(UserBean userBean);
+
     }
 
 
@@ -44,6 +47,7 @@ public interface LoginContract {
 
         void initInfo();//初始化信息
 
+        void getUserHead();//得到用户头像
     }
 
 

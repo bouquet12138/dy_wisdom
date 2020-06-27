@@ -5,6 +5,8 @@ import android.util.Log;
 import com.example.base_lib.listener.OnGetInfoListener;
 import com.example.common_lib.info.ServerInfo;
 import com.example.common_lib.java_bean.BaseBean;
+import com.example.common_lib.java_bean.TeamInfoBean;
+import com.example.common_lib.java_bean.TransferBean;
 import com.example.common_lib.java_bean.UserBean;
 import com.example.common_lib.util.OkHttpUtil;
 
@@ -31,6 +33,7 @@ public class UserModel {
      * @param listener
      */
     public void modifyUserInfo(UserBean userBean, OnGetInfoListener<BaseBean> listener) {
+
         postJsonBean(userBean, "modify_user_info", listener);
     }
 
@@ -126,7 +129,7 @@ public class UserModel {
      * @param user_id
      * @param listener
      */
-    public void myTeam(int user_id, OnGetInfoListener<BaseBean<List<UserBean>>> listener) {
+    public void myTeam(int user_id, boolean isPlace, OnGetInfoListener<BaseBean<List<UserBean>>> listener) {
 
 
         JSONObject jsonObject = new JSONObject();
@@ -138,20 +141,49 @@ public class UserModel {
 
         Log.d(TAG, "myTeam: " + jsonObject.toString());
 
-        OkHttpUtil.postJson(ServerInfo.getServerAddress("my_team"), jsonObject.toString(), new okhttp3.Callback() {
+        String url = isPlace ? "my_team" : "get_recommend_list";
+
+        Log.d(TAG, "myTeam: " + jsonObject.toString());
+
+        ModelListUtil<UserBean> modelListUtil = new ModelListUtil<>();
+        modelListUtil.getList(url, jsonObject.toString(),listener, UserBean.class);
+    }
+
+    /**
+     * 积分互转
+     *
+     * @param transferBean
+     * @param listener
+     */
+    public void integerTransfers(TransferBean transferBean, OnGetInfoListener<BaseBean> listener) {
+        ModelUtil.postJsonBean(transferBean, "integer_transfers", listener);
+    }
+
+    /**
+     * 展示团队
+     */
+    public void showTeam(int user_id, OnGetInfoListener<BaseBean<TeamInfoBean>> listener) {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("user_id", user_id);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Log.d(TAG, "show_team: " + jsonObject.toString());
+
+        OkHttpUtil.postJson(ServerInfo.getServerAddress("show_team"), jsonObject.toString(), new okhttp3.Callback() {
 
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 listener.onComplete();
                 String responseData = response.body().string();
                 Log.d(TAG, "onResponse: " + responseData);//设置响应信息
-                BaseBean<List<UserBean>> baseBean = BaseBean.analysisBaseBeanList(responseData, UserBean.class);
-
+                BaseBean<TeamInfoBean> baseBean = BaseBean.analysisBaseBean(responseData, TeamInfoBean.class);
                 if (baseBean != null)
                     listener.onResult(baseBean);//传递出去
                 else
                     listener.onNetError();
-
             }
 
             @Override
@@ -162,4 +194,5 @@ public class UserModel {
             }
         });
     }
+
 }

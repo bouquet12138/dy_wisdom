@@ -3,6 +3,7 @@ package com.example.login_module.presenter;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.blankj.utilcode.util.NetworkUtils;
@@ -32,6 +33,8 @@ public class LoginPresenter extends MVPBasePresenter<LoginContract.IView>
     private final int INFO_ON_RESULT = 3;
     private final int INFO_NET_ERROR = 4;//网络错误
     private final int INFO_ON_COMPLETE = 5;//完成
+
+    private final int HEAD_ON_RESULT = 6;//头像
 
 
     private Handler mHandler = new Handler() {
@@ -73,6 +76,10 @@ public class LoginPresenter extends MVPBasePresenter<LoginContract.IView>
                     break;
                 case INFO_ON_COMPLETE:
                     getView().hideLoading();//隐藏加载进度框
+                    break;
+                case HEAD_ON_RESULT:
+                    BaseBean<UserBean> baseBean2 = (BaseBean<UserBean>) msg.obj;
+                    getView().setHeadImg(baseBean2.getData());//设置头像链接
                     break;
             }
 
@@ -165,6 +172,41 @@ public class LoginPresenter extends MVPBasePresenter<LoginContract.IView>
             String password = preferences.getString("password", "");//密码
             getView().setAccount(account);//设置账号
             getView().setPassword(password);//设置密码
+        }
+    }
+
+    @Override
+    public void getUserHead() {
+        if (!isViewAttached())
+            return;
+
+        String phone = getView().getAccount();
+
+
+        if (!TextUtils.isEmpty(phone) && phone.length() == 11) {
+
+            mUserModel.getUserInfoWithPhone(phone, new OnGetInfoListener<BaseBean<UserBean>>() {
+                @Override
+                public void onComplete() {
+
+                }
+
+                @Override
+                public void onNetError() {
+
+                }
+
+                @Override
+                public void onResult(BaseBean<UserBean> info) {
+                    Message msg = mHandler.obtainMessage();
+                    msg.what = HEAD_ON_RESULT;//结果
+                    msg.obj = info;
+                    mHandler.sendMessage(msg);//发送信息
+                }
+            });
+        }
+        else{
+            getView().setHeadImg(null);
         }
     }
 

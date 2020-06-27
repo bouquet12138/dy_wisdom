@@ -73,9 +73,11 @@ public class ForgetPassPresenter extends MVPBasePresenter<ForgetPassContract.IVi
                     break;
                 case SUBMIT_ON_RESULT:
                     BaseBean<UserBean> baseBean2 = (BaseBean<UserBean>) msg.obj;//得到用户id
-                    getView().showToast(baseBean2.getMsg());//弹出提示信息
                     if (baseBean2.getCode() == 1) {
+                        getView().showToast(baseBean2.getMsg());//弹出提示信息
                         getView().finishActivity();//销毁活动
+                    }else{
+                        getView().showErrorHint(baseBean2.getMsg());
                     }
                     break;
                 case SUBMIT_NET_ERROR:
